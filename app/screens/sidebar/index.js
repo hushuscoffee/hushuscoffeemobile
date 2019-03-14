@@ -32,7 +32,7 @@ const datas = [
   },
   {
     name: "Recipe",
-    route: "Home",
+    route: "AllRecipes",
     icon: "clipboard"
   },
   {

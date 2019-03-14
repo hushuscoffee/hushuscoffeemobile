@@ -93,7 +93,7 @@ class Home extends Component {
               </Button>
           </Col>
           <Col style={styles.col}>
-          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Recipes")}>
+          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("AllRecipes")}>
           <Image
                 source={recipes}
               />

@@ -23,17 +23,9 @@ import SideBar from "./screens/sidebar";
 const Drawer = createDrawerNavigator(
   {
     Home: { screen: Home },
-    TestAPI: { screen: TestAPI },
-    DetailArticle: { screen: DetailArticle },
-    Home: { screen: Home },
-    AllEvents: { screen: AllEvents },
-    AllNews: { screen: AllNews },
-    AllTips: { screen: AllTips },
     AllRecipes: { screen: AllRecipes },
     BrewingMethods: { screen: BrewingMethods },
-    DetailBrewing: { screen: DetailBrewing },
     People: { screen: People },
-    DetailPeople: { screen: DetailPeople },
     AuthLogin: { screen: AuthLogin },
     AuthRegister: { screen: AuthRegister },
     Article: { screen: Article }
@@ -49,7 +41,13 @@ const Drawer = createDrawerNavigator(
 
 const AppNavigator = createStackNavigator(
   {
-    Drawer: { screen: Drawer }
+    Drawer: { screen: Drawer },
+    DetailArticle: { screen: DetailArticle },
+    DetailBrewing: { screen: DetailBrewing },
+    DetailPeople: { screen: DetailPeople },
+    AllEvents: { screen: AllEvents },
+    AllNews: { screen: AllNews },
+    AllTips: { screen: AllTips }
   },
   {
     initialRouteName: "Drawer",
