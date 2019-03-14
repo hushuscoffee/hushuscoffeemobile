@@ -38,7 +38,7 @@ const people1 = require("../../../assets/people4.jpg");
 const people2 = require("../../../assets/people5.jpg");
 const people3 = require("../../../assets/people6.jpg");
 
-const URI = 'http://hushuscoffee.com';
+const URI = 'http://hushuscoffee.com/';
 
 class Home extends Component {
   state = {
@@ -50,7 +50,7 @@ class Home extends Component {
 
   fetchData = async () => {
     const { params } = this.props.navigation.state;
-    const response = await fetch(URI + '/api/articles');
+    const response = await fetch(URI + 'api/articles');
     const json = await response.json();
     this.setState({
         articles: json.data
@@ -131,7 +131,7 @@ class Home extends Component {
               </Button>
             </Row>
             <Row style={{ flexDirection: "row" }}>
-            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, justifyContent:"center", flexWrap:"wrap", width:120}}>
+            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, justifyContent:"center", flexWrap:"wrap", width:120}} onPress={() => this.props.navigation.navigate("AllRecipes")}>
             <Image
                 source={recipes}
               />
