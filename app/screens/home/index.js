@@ -24,28 +24,16 @@ import { Grid, Row, Col } from "react-native-easy-grid";
 import styles from "./styles";
 const dW = Dimensions.get("window").width;
 const dH = Dimensions.get("window").height;
-const logo = require("../../../assets/logo.png");
-const cardImage = require("../../../assets/drawer-cover.png");
-const articles = require("../../../assets/articles.png");
 const brewing = require("../../../assets/brewing.png");
 const notes = require("../../../assets/notes.png");
 const people = require("../../../assets/people.png");
 const recipes = require("../../../assets/VietnameseCoffee.png");
-const tools = require("../../../assets/tools.png");
-const article1 = require("../../../assets/article2.png");
-const article2 = require("../../../assets/article1.png");
-const article3 = require("../../../assets/article3.png");
-const people1 = require("../../../assets/people4.jpg");
-const people2 = require("../../../assets/people5.jpg");
-const people3 = require("../../../assets/people6.jpg");
 
 const URI = 'http://hushuscoffee.com/';
 
 class Home extends Component {
   state = {
-    articles: [],
-    brewings: [],
-    recipes: [],       
+    articles: [],      
     people: []
   }
 
@@ -89,7 +77,7 @@ class Home extends Component {
         <Content padder>
         <Grid style={{alignContent:"center", padding:6}}>
           <Col style={styles.col}>
-          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22,height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Article")}>
+          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22,height:dH*0.15,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Article")}>
           <Image
                 source={notes}
               />

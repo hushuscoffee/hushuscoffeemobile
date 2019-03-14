@@ -15,10 +15,6 @@ import {
   H2,
   Text,
   Card,
-  CardItem,
-  Thumbnail,
-  ListItem,
-  List,
   View
 } from "native-base";
 import { Grid, Row, Col } from "react-native-easy-grid";
