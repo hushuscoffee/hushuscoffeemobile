@@ -24,7 +24,7 @@ import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
 
-const URI = 'http://hushuscoffee.com';
+const URI = 'http://hushuscoffee.com/';
 
 class Article extends Component {
   state = {
@@ -73,7 +73,7 @@ class Article extends Component {
       <Container>
         <Header style={styles.header}>
           <Left>
-            <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
+            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
               <Icon name="menu" style={{color:"black"}}/>
             </Button>
           </Left>

@@ -25,18 +25,18 @@ import { Grid, Row, Col } from "react-native-easy-grid";
 
 const URI = 'http://hushuscoffee.com/';
 
-class AllEvents extends Component {
+class AllBrewings extends Component {
 
     state = {
-        events: []        
+        brewings: []        
     }
 
     fetchData = async () => {
         const { params } = this.props.navigation.state;
-        const response = await fetch(URI + 'api/events');
+        const response = await fetch(URI + 'api/brewing');
         const json = await response.json();
         this.setState({
-            events: json.data
+            brewings: json.data
         });
     }
 
@@ -46,18 +46,18 @@ class AllEvents extends Component {
 
     render(){
         return(
-            <Container>
+            <Container style={{paddingBottom: 50}}>
                 <Header style={styles.header}>
                 <Left>
                     <Button
                     transparent
-                    onPress={() => this.props.navigation.openDrawer()}
+                    onPress={() => this.props.navigation.navigate("DrawerOpen")}
                     >
                     <Icon name="menu" style={{color:"black"}}/>
                     </Button>
                 </Left>
                 <Body>
-                    <Title style={styles.title}>All Events</Title>
+                    <Title style={styles.title}>All Recipes</Title>
                 </Body>
                 <Right>
                     <Button transparent>
@@ -71,16 +71,16 @@ class AllEvents extends Component {
             
                 <View>
                     <FlatList
-                        data={this.state.events}
-                        keyExtractor={(dataEvents, i) => i.toString()}
+                        data={this.state.brewings}
+                        keyExtractor={(dataBrewings, i) => i.toString()}
                         renderItem={({item}) => 
                             <Grid style={{padding: 15}}>
                                 <Row style={{justifyContent: "center", flexDirection: "row"}}
                                         onPress={ ()=> 
-                                            this.props.navigation.navigate("DetailArticle", {id:item.id}) 
+                                            this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
                                         }>
                                     <Col style={{flexDirection: "column"}}>
-                                    <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
+                                    <Image source={{ uri : `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
                                     </Col>
                                     <Col style={{flexDirection: "column", marginLeft: -150}}>
                                         <Text>{`${item.title}`}</Text>
@@ -95,4 +95,4 @@ class AllEvents extends Component {
     }
 }
 
-export default AllEvents;
+export default AllBrewings;

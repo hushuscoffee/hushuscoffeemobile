@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, Dimensions, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 
 import {
   Container,
@@ -18,7 +18,8 @@ import {
   Thumbnail,
   ListItem,
   List,
-  Toast
+  Toast,
+  View
 } from "native-base";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
@@ -39,7 +40,27 @@ const coffeeKhop = require("../../../assets/CoffeeKhop.png");
 const hario = require("../../../assets/HarioV60.png");
 const brewingTechnique = require("../../../assets/brewingMethods.png");
 
+const URI = 'http://hushuscoffee.com/';
+
 class BrewingMethods extends Component {
+  // eslint-disable-line
+
+  state = {
+    brewings: []        
+  }
+
+  fetchData = async () => {
+      const { params } = this.props.navigation.state;
+      const response = await fetch(URI + 'api/brewing');
+      const json = await response.json();
+      this.setState({
+          brewings: json.data
+      });
+  }
+
+  componentDidMount(){
+      this.fetchData();
+  }
 
   render() {
     return (
@@ -71,7 +92,7 @@ class BrewingMethods extends Component {
             <Row style={styles.container}>
               <Card>
                 <Col style={styles.col}>
-                  <CardItem button onPress={ () => this.props.navigation.navigate("DetailBrewing") }>
+                  <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={pourOver} />
                   </CardItem>
                   <Text style={styles.menuText}>POUR OVER</Text>
@@ -97,7 +118,7 @@ class BrewingMethods extends Component {
             <Row style={styles.container}>
               <Card>
                 <Col style={styles.col}>
-                  <CardItem button onPress={ () => this.props.navigation.navigate("DetailBrewing") }>
+                  <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={aeropress} />
                   </CardItem>
                   <Text style={styles.menuText}>AEROPRESS</Text>
@@ -123,7 +144,7 @@ class BrewingMethods extends Component {
             <Row style={styles.container}>
               <Card>
                 <Col style={styles.col}>
-                  <CardItem button onPress={ () => this.props.navigation.navigate("DetailBrewing") }>
+                  <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={mokaPot} />
                   </CardItem>                    
                   <Text style={styles.menuText}>MOKA POT</Text>
@@ -150,25 +171,32 @@ class BrewingMethods extends Component {
 
           <Row style={styles.title}>
             <Text style={{fontSize:24, marginTop: 36}}>New Brewing Methods</Text>
-            <Text style={{ alignSelf:"flex-end", marginLeft:80, color:"blue" }}>View All</Text>
+            <Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }} 
+              onPress={ () => this.props.navigation.navigate("AllBrewings") }>
+              View All
+            </Text>
           </Row>
 
-          <Grid>
-            <Row>
-              <Col style={styles.colImage}>
-                <Image source={brewingTechnique} style={styles.imageContainer} />
-                <Text style={styles.menuText}>New Number 1</Text>
-              </Col>
-              <Col style={[styles.colImage, styles.contentSpace]}>
-                <Image source={brewingTechnique} style={styles.imageContainer} />
-                <Text style={styles.menuText}>New Number 2</Text>
-              </Col>
-              <Col style={[styles.colImage, styles.contentSpace]}>
-                <Image source={brewingTechnique} style={styles.imageContainer} />
-                <Text style={styles.menuText}>New Number 3</Text>
-              </Col>
-            </Row>
-          </Grid>
+          <View>
+              <FlatList
+                  data={this.state.brewings}
+                  horizontal={true}
+                  keyExtractor={(dataBrewings, i) => i.toString()}
+                  renderItem={({item}) => 
+                      <Grid style={{padding: 15}}>
+                          <Row style={{justifyContent: "center", flexDirection: "row"}}
+                              onPress={ ()=> 
+                                  this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
+                              }>
+                              <Col style={{flexDirection: "column"}}>
+                                <Image source={{ uri : `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
+                                <Text style={styles.menuText}>{`${item.title}`}</Text>
+                              </Col>
+                          </Row>
+                      </Grid>
+                  }
+              />
+          </View>
         </Content>
       </Container>
     );

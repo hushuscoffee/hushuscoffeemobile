@@ -23,7 +23,7 @@ View
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
-const URI = 'http://hushuscoffee.com';
+const URI = 'http://hushuscoffee.com/';
 
 class AllArticle extends Component {
 
@@ -33,7 +33,7 @@ class AllArticle extends Component {
 
     fetchData = async () => {
         const { params } = this.props.navigation.state;
-        const response = await fetch(URI + '/api/articles');
+        const response = await fetch(URI + 'api/articles');
         const json = await response.json();
         // const jsonParse = JSON.parse(json);
         this.setState({
