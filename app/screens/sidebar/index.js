@@ -18,50 +18,37 @@ const datas = [
   {
     name: "Home",
     route: "Home",
-    icon: "home",
-    bg: "#C5F442"
+    icon: "home"
   },
   {
-    name: "Brewing Methods",
-    route: "BrewingMethods",
-    icon: "clipboard",
-    bg: "#C5F442"
-  },
-  {
-    name: "Test API",
-    route: "Home",
-    icon: "phone-portrait",
-    bg: "#C5F442"
-  },
-  {
-    name: "Articles",
+    name: "Article",
     route: "Article",
-    icon: "notes",
-    bg: "#C5F442"
+    icon: "paper"
+  },
+  {
+    name: "Brewing Method",
+    route: "BrewingMethods",
+    icon: "book"
+  },
+  {
+    name: "Recipe",
+    route: "Home",
+    icon: "clipboard"
   },
   {
     name: "People",
     route: "People",
-    icon: "people",
-    bg: "#C5F442"
-  },
-  {
-    name: "Recipes",
-    route: "Home",
-    icon: "clipboard",
-    bg: "#C5F442"
+    icon: "people"
   },
   {
     name: "Login",
     route: "AuthLogin",
-    icon: "person",
-    bg: "#C5F442"
+    icon: "person"
   },
   {
     name: "Register",
     route: "AuthRegister",
-    icon: "person-add",
-    bg: "#C5F442"
+    icon: "person-add"
   }
 ];
 
