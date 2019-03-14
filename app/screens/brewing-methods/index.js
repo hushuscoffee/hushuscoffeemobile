@@ -46,7 +46,8 @@ class BrewingMethods extends Component {
   // eslint-disable-line
 
   state = {
-    brewings: []        
+    brewings: [],
+    dataSource: []        
   }
 
   fetchData = async () => {
@@ -54,13 +55,32 @@ class BrewingMethods extends Component {
       const response = await fetch(URI + 'api/brewing');
       const json = await response.json();
       this.setState({
-          brewings: json.data
+          brewings: json.data,
+          dataSource: JSON.stringify(json.data)
       });
   }
+
 
   componentDidMount(){
       this.fetchData();
   }
+
+  _onPressButton() {
+
+    return fetch(URI + 'api/brewing')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        var obj = (JSON.stringify(responseJson.data));
+
+        // obj.forEach(element => {
+        //   alert(element);
+        // });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  
+    }
 
   render() {
     return (
@@ -177,7 +197,7 @@ class BrewingMethods extends Component {
             </Text>
           </Row>
 
-          <View>
+          {/* <View>
               <FlatList
                   data={this.state.brewings}
                   horizontal={true}
@@ -196,6 +216,13 @@ class BrewingMethods extends Component {
                       </Grid>
                   }
               />
+          </View> */}
+
+          <View>
+          <Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }} 
+              onPress={ this._onPressButton }>
+              Click here, bitch
+            </Text>
           </View>
         </Content>
       </Container>

@@ -66,8 +66,6 @@ class Article extends Component {
       this.fetchDataTips();
   }
 
-
-
   render() {
     return (
       <Container>
@@ -115,7 +113,7 @@ class Article extends Component {
                                 }>
                             <Col style={{flexDirection: "column"}}>
                               <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}>{`${item.title}`}</Text>
+                              <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
                     </Grid>
@@ -148,7 +146,7 @@ class Article extends Component {
                                 }>
                             <Col style={{flexDirection: "column"}}>
                               <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}>{`${item.title}`}</Text>
+                              <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
                     </Grid>
@@ -181,7 +179,7 @@ class Article extends Component {
                                 }>
                             <Col style={{flexDirection: "column"}}>
                               <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}>{`${item.title}`}</Text>
+                              <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
                     </Grid>

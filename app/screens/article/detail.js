@@ -24,7 +24,7 @@ import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import HTMLView from 'react-native-htmlview';
 
-const URI = 'http://hushuscoffee.com/';
+const URI = 'http://10.0.2.2:8000';
 
 class DetailArticle extends Component {
   // eslint-disable-line
@@ -36,7 +36,7 @@ class DetailArticle extends Component {
 
   fetchData = async () => {
       const {params} = this.props.navigation.state;
-      const response = await fetch(URI + 'api/articles/' + params.id);
+      const response = await fetch(URI + '/api/articles/' + params.id);
       const json = await response.json();
       this.setState({
           articles: json.data,
@@ -55,7 +55,7 @@ class DetailArticle extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
+              onPress={() => this.props.navigation.openDrawer()}
             >
               <Icon name="menu" style={{color:"black"}}/>
             </Button>
