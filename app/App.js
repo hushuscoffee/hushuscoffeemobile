@@ -24,7 +24,7 @@ const Drawer = createDrawerNavigator(
   {
     Home: { screen: Home },
     TestAPI: { screen: TestAPI },
-    TestDetailArticle: { screen: TestDetailArticle },
+    DetailArticle: { screen: DetailArticle },
     Home: { screen: Home },
     AllEvents: { screen: AllEvents },
     AllNews: { screen: AllNews },

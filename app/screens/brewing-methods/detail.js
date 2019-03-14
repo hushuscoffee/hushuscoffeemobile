@@ -22,7 +22,6 @@ View
 } from "native-base";
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
-import HTMLView from 'react-native-htmlview';
 
 const URI = 'http://hushuscoffee.com/';
 

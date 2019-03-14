@@ -35,7 +35,7 @@ class Article extends Component {
 
   fetchDataNews = async () => {
       const { params } = this.props.navigation.state;
-      const response = await fetch(URI + 'api/news');
+      const response = await fetch(URI + 'api/home-news');
       const json = await response.json();
       this.setState({
           news: json.data
@@ -44,7 +44,7 @@ class Article extends Component {
 
   fetchDataEvents = async () => {
     const { params } = this.props.navigation.state;
-    const response = await fetch(URI + 'api/events');
+    const response = await fetch(URI + 'api/home-events');
     const json = await response.json();
     this.setState({
         events: json.data
@@ -53,7 +53,7 @@ class Article extends Component {
 
   fetchDataTips = async () => {
     const { params } = this.props.navigation.state;
-    const response = await fetch(URI + 'api/tips');
+    const response = await fetch(URI + 'api/home-tips');
     const json = await response.json();
     this.setState({
         tips: json.data
@@ -65,8 +65,6 @@ class Article extends Component {
       this.fetchDataEvents();
       this.fetchDataTips();
   }
-
-
 
   render() {
     return (
@@ -115,7 +113,7 @@ class Article extends Component {
                                 }>
                             <Col style={{flexDirection: "column"}}>
                               <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}>{`${item.title}`}</Text>
+                              <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
                     </Grid>
@@ -148,7 +146,7 @@ class Article extends Component {
                                 }>
                             <Col style={{flexDirection: "column"}}>
                               <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}>{`${item.title}`}</Text>
+                              <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
                     </Grid>
@@ -181,7 +179,7 @@ class Article extends Component {
                                 }>
                             <Col style={{flexDirection: "column"}}>
                               <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}>{`${item.title}`}</Text>
+                              <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
                     </Grid>

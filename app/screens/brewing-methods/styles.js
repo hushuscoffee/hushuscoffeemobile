@@ -1,3 +1,5 @@
+import { black } from "ansi-colors";
+
 const React = require("react-native");
 const { Dimensions, Platform } = React;
 const deviceHeight = Dimensions.get("window").height;
@@ -28,7 +30,8 @@ export default {
   menuText: {
     marginTop: 10,
     fontSize: 14,
-    width:110
+    width:110,
+    color:black
   },
   title: {
     color: '#000'
