@@ -17,12 +17,13 @@ import {
   CardItem,
   Thumbnail,
   ListItem,
-  List
+  List,
+  View
 } from "native-base";
 import { Grid, Row, Col } from "react-native-easy-grid";
-
 import styles from "./styles";
-const deviceWidth = Dimensions.get("window").width;
+const dW = Dimensions.get("window").width;
+const dH = Dimensions.get("window").height;
 const logo = require("../../../assets/logo.png");
 const cardImage = require("../../../assets/drawer-cover.png");
 const articles = require("../../../assets/articles.png");
@@ -65,24 +66,23 @@ class Home extends Component {
     return (
       <Container>
         <Header style={styles.header}>
-          <Left>
-            <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
-              <Icon name="menu" style={{color:"black"}}/>
-            </Button>
-          </Left>
-          <Body>
-            <Title style={styles.title}>Hushus Coffee</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-              <Icon name='search' style={{color:"black"}}/>
-            </Button>
-            <Button transparent>
-              <Icon name='more' style={{color:"black"}}/>
-            </Button>
-          </Right>
+        <Left>
+      <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
+        <Icon name="menu" style={{color:"black"}}/>
+      </Button>
+    </Left>
+    <Body>
+      <Title style={styles.title}>Hushus Coffee</Title>
+    </Body>
+    <Right>
+      <Button transparent>
+        <Icon name='search' style={{color:"black"}}/>
+      </Button>
+      <Button transparent>
+        <Icon name='more' style={{color:"black"}}/>
+      </Button>
+    </Right>
         </Header>
-
         <Content padder>
         <Grid>
           <Col style={{margin:5 }}>
@@ -142,7 +142,7 @@ class Home extends Component {
         </Grid>
         
         <Row style={styles.title}>
-            <Text style={{fontSize:24, marginTop: 20}}>Popular Articles</Text>
+            <Text style={{fontSize:24, marginTop: 20}}>Latest Articles</Text>
             <Right><Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }}>View All</Text></Right>
           </Row>
 
@@ -164,7 +164,7 @@ class Home extends Component {
           </Grid>
 
         <Row style={styles.title}>
-            <Text style={{fontSize:24, marginTop: 20}}>Trending People</Text>
+            <Text style={{fontSize:24, marginTop: 20}}>People</Text>
             <Right><Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }}>View All</Text></Right>
           </Row>
 
