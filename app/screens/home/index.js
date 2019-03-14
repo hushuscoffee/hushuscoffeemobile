@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, Dimensions } from "react-native";
+import { Image, Dimensions, FlatList } from "react-native";
 
 import {
   Container,
@@ -30,7 +30,7 @@ const articles = require("../../../assets/articles.png");
 const brewing = require("../../../assets/brewing.png");
 const notes = require("../../../assets/notes.png");
 const people = require("../../../assets/people.png");
-const recipes = require("../../../assets/recipes.png");
+const recipes = require("../../../assets/VietnameseCoffee.png");
 const tools = require("../../../assets/tools.png");
 const article1 = require("../../../assets/article2.png");
 const article2 = require("../../../assets/article1.png");
@@ -51,10 +51,13 @@ class Home extends Component {
 
   fetchData = async () => {
     const { params } = this.props.navigation.state;
-    const response = await fetch(URI + 'api/articles');
+    const response = await fetch(URI + 'api/home-articles');
+    const responsePeople = await fetch(URI + 'api/home-people');
     const json = await response.json();
+    const jsonPeople = await responsePeople.json();
     this.setState({
-        articles: json.data
+        articles: json.data,
+        people : jsonPeople.data
     });
   }
 
@@ -84,107 +87,101 @@ class Home extends Component {
     </Right>
         </Header>
         <Content padder>
-        <Grid>
-          <Col style={{margin:5 }}>
-          <Row style={{flexDirection:"row",marginBottom:10}}>
-          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("BrewingMethods")}>
+        <Grid style={{alignContent:"center", padding:6}}>
+          <Col style={styles.col}>
+          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22,height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Article")}>
+          <Image
+                source={notes}
+              />
+              <Text style={{textAlign:"center", color:"black"}}>Article</Text>
+              </Button>
+          </Col>
+          <Col style={styles.col}>
+          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22,height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("BrewingMethods")}>
           <Image
                 source={brewing}
               />
-              <Text style={{textAlign:"center", color:"black"}}>BREWING METHODS</Text>
+              <Text style={{textAlign:"center", color:"black"}}>Brewing</Text>
               </Button>
-          </Row>
-            <Row style={{flexDirection:"row"}}>
-            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, justifyContent:"center", flexWrap:"wrap", width:120}}>
-            <Image
-                source={tools}
-              />
-              <Text style={{textAlign:"center", color:"black"}}>TOOLS</Text>
-              </Button>
-            </Row>
           </Col>
-          <Col style={{margin:5 }}>
-              <Row style={{ flexDirection: "row" }}>
-            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, justifyContent:"center", flexWrap:"wrap", width:125}} onPress={() => this.props.navigation.navigate("Article")}>
-            <Image
-                source={articles}
-              />
-              <Text style={{textAlign:"center", color:"black"}}>ARTICLES</Text>
-              </Button>
-            </Row>
-            <Row style={{flexDirection:"row",marginTop:10}}>
-            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, height:100,justifyContent:"center", flexWrap:"wrap", width:125}} onPress={() => this.props.navigation.navigate("People")}>
-            <Image
-                source={people}
-              />
-              <Text style={{textAlign:"center", color:"black"}}>PEOPLE</Text>
-              </Button>
-            </Row>
-          </Col>
-          <Col style={{margin:5 }}>
-            <Row style={{ flexDirection: "row", marginBottom: 10 }}>
-            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, height:100,justifyContent:"center", flexWrap:"wrap", width:120}}>
-            <Image
-                source={notes}
-              />
-              <Text style={{textAlign:"center", color:"black"}}>COFFEE NOTES</Text>
-              </Button>
-            </Row>
-            <Row style={{ flexDirection: "row" }}>
-            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, justifyContent:"center", flexWrap:"wrap", width:120}} onPress={() => this.props.navigation.navigate("AllRecipes")}>
-            <Image
+          <Col style={styles.col}>
+          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Recipes")}>
+          <Image
                 source={recipes}
               />
-              <Text style={{textAlign:"center", color:"black"}}>RECIPES</Text>
+              <Text style={{textAlign:"center", color:"black"}}>Recipe</Text>
               </Button>
-            </Row>
+          </Col>
+          <Col style={styles.col}>
+          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("People")}>
+          <Image
+                source={people}
+              />
+              <Text style={{textAlign:"center", color:"black"}}>People</Text>
+              </Button>
           </Col>
         </Grid>
-        
+
+        <Card style={{backgroundColor:'#e5e7ea', padding:5}}>
+          <Row style={styles.title}>
+            <Text style={{fontSize:24}}>Latest Articles</Text>
+              <Right>
+                <Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }} 
+                  onPress={ () => this.props.navigation.navigate("Article") }>
+                  View All
+                </Text>
+              </Right>
+          </Row>
+
+          <View > 
+            <FlatList
+                data={this.state.articles}
+                horizontal={true}
+                keyExtractor={(newsData, i) => i.toString()}
+                renderItem={({item}) => 
+                    <Grid style={{padding: 15}}>
+                        <Row style={{justifyContent: "center", flexDirection: "row"}}       
+                                onPress={ ()=> 
+                                    this.props.navigation.navigate("DetailArticle", {id:item.id}) 
+                                }>
+                            <Col style={{flexDirection: "column"}}>
+                              <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
+                              <Text style={styles.menuText}>{`${item.title}`}</Text>
+                            </Col>
+                        </Row>
+                    </Grid>
+                }
+            />
+          </View>
+        </Card>  
+
+        <Card style={{backgroundColor:'#e5e7ea', padding:5, marginTop:25}}>
         <Row style={styles.title}>
-            <Text style={{fontSize:24, marginTop: 20}}>Latest Articles</Text>
+            <Text style={{fontSize:24}}>People</Text>
             <Right><Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }}>View All</Text></Right>
           </Row>
 
-          <Grid>
-            <Row>
-              <Col style={styles.colImage} onPress={()=>this.props.navigation.navigate("DetailArticle")}>
-                <Image source={article1} style={styles.imageContainer} />
-                <Text style={styles.menuText}>Article Number 1</Text>
-              </Col>
-              <Col style={[styles.colImage, styles.contentSpace]} onPress={()=>this.props.navigation.navigate("DetailArticle")}>
-                <Image source={article2} style={styles.imageContainer} />
-                <Text style={styles.menuText}>Article Number 2</Text>
-              </Col>
-              <Col style={[styles.colImage, styles.contentSpace]} onPress={()=>this.props.navigation.navigate("DetailArticle")}>
-                <Image source={article3} style={styles.imageContainer} />
-                <Text style={styles.menuText}>Article Number 3</Text>
-              </Col>
-            </Row>
-          </Grid>
-
-        <Row style={styles.title}>
-            <Text style={{fontSize:24, marginTop: 20}}>People</Text>
-            <Right><Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }}>View All</Text></Right>
-          </Row>
-
-          <Grid>
-            <Row>
-              <Col style={styles.colImage}>
-                <Image source={people1} style={styles.imageContainer} />
-                <Text style={styles.menuText}>People Number 1</Text>
-              </Col>
-              <Col style={[styles.colImage, styles.contentSpace]}>
-                <Image source={people2} style={styles.imageContainer} />
-                <Text style={styles.menuText}>People Number 2</Text>
-              </Col>
-              <Col style={[styles.colImage, styles.contentSpace]}>
-                <Image source={people3} style={styles.imageContainer} />
-                <Text style={styles.menuText}>People Number 3</Text>
-              </Col>
-            </Row>
-          </Grid>
-        
+          <View>
+            <FlatList
+                data={this.state.people}
+                horizontal={true}
+                keyExtractor={(dataPeople, i) => i.toString()}
+                renderItem={({item}) =>
+                  <Grid style={{padding: 15}}>
+                      <Row style={{justifyContent: "center", flexDirection: "row"}}
+                          onPress={ ()=> 
+                              this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
+                          }>
+                          <Col style={{flexDirection: "column"}}>
+                            <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
+                            <Text style={styles.menuText}>{`${item.fullname}`}</Text>
+                          </Col>
+                      </Row>
+                  </Grid>
+                }
+            />
+          </View>
+        </Card>        
         </Content>
       </Container>
     );

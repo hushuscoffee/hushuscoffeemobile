@@ -35,7 +35,7 @@ class Article extends Component {
 
   fetchDataNews = async () => {
       const { params } = this.props.navigation.state;
-      const response = await fetch(URI + 'api/news');
+      const response = await fetch(URI + 'api/home-news');
       const json = await response.json();
       this.setState({
           news: json.data
@@ -44,7 +44,7 @@ class Article extends Component {
 
   fetchDataEvents = async () => {
     const { params } = this.props.navigation.state;
-    const response = await fetch(URI + 'api/events');
+    const response = await fetch(URI + 'api/home-events');
     const json = await response.json();
     this.setState({
         events: json.data
@@ -53,7 +53,7 @@ class Article extends Component {
 
   fetchDataTips = async () => {
     const { params } = this.props.navigation.state;
-    const response = await fetch(URI + 'api/tips');
+    const response = await fetch(URI + 'api/home-tips');
     const json = await response.json();
     this.setState({
         tips: json.data

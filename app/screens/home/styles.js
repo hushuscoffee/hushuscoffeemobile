@@ -4,7 +4,10 @@ const deviceHeight = Dimensions.get("window").height;
 
 export default {
   container: {
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    flexDirection: 'row',
+    flexWrap: "wrap",
+    justifyContent: 'space-around'
   },
   imageContainer: {
     flex: 1,
@@ -44,8 +47,7 @@ export default {
     padding: 10
   },
   col: {
-    alignItems: "center",
-    padding: 10,
+    alignItems: "center"
   },
   colImage: {
     alignItems: "center",
@@ -53,7 +55,8 @@ export default {
   },
   menuText: {
     marginTop: 10,
-    fontSize: 14
+    fontSize: 14,
+    width:110
   },
   contentSpace: {
     marginLeft: 0
