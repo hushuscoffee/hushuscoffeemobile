@@ -89,7 +89,7 @@ class Home extends Component {
           <Image
                 source={brewing}
               />
-              <Text style={{textAlign:"center", color:"black"}}>Brewing</Text>
+              <Text style={{textAlign:"center", color:"black", fontSize:13}}>Brewing</Text>
               </Button>
           </Col>
           <Col style={styles.col}>

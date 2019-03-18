@@ -22,6 +22,7 @@ import {
   View
 } from "native-base";
 import { Grid, Row, Col } from "react-native-easy-grid";
+import HTMLView from "react-native-htmlview";
 
 import styles from "./styles";
 const deviceWidth = Dimensions.get("window").width;
@@ -55,32 +56,13 @@ class BrewingMethods extends Component {
       const response = await fetch(URI + 'api/brewing');
       const json = await response.json();
       this.setState({
-          brewings: json.data,
-          dataSource: JSON.stringify(json.data)
+          brewings: json.data
       });
   }
-
 
   componentDidMount(){
       this.fetchData();
   }
-
-  _onPressButton() {
-
-    return fetch(URI + 'api/brewing')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        var obj = (JSON.stringify(responseJson.data));
-
-        // obj.forEach(element => {
-        //   alert(element);
-        // });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  
-    }
 
   render() {
     return (
@@ -197,7 +179,7 @@ class BrewingMethods extends Component {
             </Text>
           </Row>
 
-          {/* <View>
+          <View>
               <FlatList
                   data={this.state.brewings}
                   horizontal={true}
@@ -216,13 +198,6 @@ class BrewingMethods extends Component {
                       </Grid>
                   }
               />
-          </View> */}
-
-          <View>
-          <Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }} 
-              onPress={ this._onPressButton }>
-              Click here, bitch
-            </Text>
           </View>
         </Content>
       </Container>
