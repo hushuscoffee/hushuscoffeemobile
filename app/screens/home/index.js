@@ -11,13 +11,8 @@ import {
   Left,
   Right,
   Body,
-  Item,
   Text,
   Card,
-  CardItem,
-  Thumbnail,
-  ListItem,
-  List,
   View
 } from "native-base";
 import { Grid, Row, Col } from "react-native-easy-grid";
@@ -89,7 +84,7 @@ class Home extends Component {
           <Image
                 source={brewing}
               />
-              <Text style={{textAlign:"center", color:"black", fontSize:13}}>Brewing</Text>
+              <Text style={{textAlign:"center", color:"black", fontSize:12.5}}>Brewing</Text>
               </Button>
           </Col>
           <Col style={styles.col}>
