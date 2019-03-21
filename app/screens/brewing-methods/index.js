@@ -41,7 +41,7 @@ const coffeeKhop = require("../../../assets/CoffeeKhop.png");
 const hario = require("../../../assets/HarioV60.png");
 const brewingTechnique = require("../../../assets/brewingMethods.png");
 
-const URI = 'http://hushuscoffee.com/';
+const URI = 'http://10.0.2.2:8000/';
 
 class BrewingMethods extends Component {
   // eslint-disable-line
@@ -191,7 +191,7 @@ class BrewingMethods extends Component {
                                   this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
                               }>
                               <Col style={{flexDirection: "column"}}>
-                                <Image source={{ uri : `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
+                                <Image source={{ uri : `http://10.0.2.2:8000/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
                                 <Text style={styles.menuText}>{`${item.title}`}</Text>
                               </Col>
                           </Row>

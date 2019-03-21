@@ -49,7 +49,7 @@ const people10 = require("../../../assets/people7.jpg");
 const people11 = require("../../../assets/people8.jpg");
 const people12 = require("../../../assets/people9.jpg");
 
-const URI = 'http://hushuscoffee.com/';
+const URI = 'http://10.0.2.2:8000/';
 
 class People extends Component {
   // eslint-disable-line
@@ -112,7 +112,7 @@ class People extends Component {
                                 this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
                             }>
                             <Col style={{flexDirection: "column"}}>
-                              <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
+                              <Image source={{ uri : `http://10.0.2.2:8000/images/avatar/${item.photo}` }} style={styles.imageContainer} />
                               <Text style={styles.menuText}>{`${item.fullname}`}</Text>
                             </Col>
                         </Row>
@@ -140,7 +140,7 @@ class People extends Component {
                               this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
                           }>
                           <Col style={{flexDirection: "column"}}>
-                            <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
+                            <Image source={{ uri : `http://10.0.2.2:8000/images/avatar/${item.photo}` }} style={styles.imageContainer} />
                             <Text style={styles.menuText}>{`${item.fullname}`}</Text>
                           </Col>
                       </Row>
