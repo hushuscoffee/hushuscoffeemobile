@@ -24,7 +24,7 @@ import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import HTMLView from "react-native-htmlview";
 
-const URI = 'http://hushuscoffee.com/';
+const URI = 'http://10.0.2.2:8000/';
 
 class DetailBrewing extends Component {
   // eslint-disable-line
@@ -133,7 +133,7 @@ class DetailBrewing extends Component {
                                 <Text style={{fontSize:17, textAlign:"auto", fontWeight: 'bold'}}>{`${item.title}`}</Text>
                             </Col>
                             <Col style={{flexDirection: "column"}}>
-                                <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
+                                <Image source={{uri: `http://10.0.2.2:8000/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
                             </Col>
                             <Col>
                               <HTMLView
@@ -142,7 +142,7 @@ class DetailBrewing extends Component {
                             </Col>
                             <Col>
                                 <Text key={item.id}>Step Image</Text>
-                                {/* <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item.step_image}` }} style={styles.imageContainer} /> */}
+                                {/* <Image source={{uri: `http://10.0.2.2:8000/uploads/brewings/steps/${item.step_image}` }} style={styles.imageContainer} /> */}
                                   { this.state.brewings.map(item => {
                                       return <HTMLView value={ `${item.steps}` } />
                                   }) }

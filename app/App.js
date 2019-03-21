@@ -9,8 +9,6 @@ import DetailArticle from "./screens/article/detail";
 import DetailPeople from "./screens/people/detail";
 import DetailBrewing from "./screens/brewing-methods/detail/";
 
-import TestAPI from "./screens/api/";
-import TestDetailArticle from "./screens/api/";
 import AllEvents from "./screens/article/all-events/";
 import AllNews from "./screens/article/all-news/";
 import AllTips from "./screens/article/all-tips/";
@@ -42,6 +40,7 @@ const Drawer = createDrawerNavigator(
 const AppNavigator = createStackNavigator(
   {
     Drawer: { screen: Drawer },
+    Home: { screen: Home },
     DetailArticle: { screen: DetailArticle },
     DetailBrewing: { screen: DetailBrewing },
     DetailPeople: { screen: DetailPeople },

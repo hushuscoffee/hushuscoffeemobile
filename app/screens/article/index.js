@@ -24,7 +24,7 @@ import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
 
-const URI = 'http://hushuscoffee.com/';
+const URI = 'http://10.0.2.2:8000/';
 
 class Article extends Component {
   state = {
@@ -112,7 +112,7 @@ class Article extends Component {
                                     this.props.navigation.navigate("DetailArticle", {id:item.id}) 
                                 }>
                             <Col style={{flexDirection: "column"}}>
-                              <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
+                              <Image source={{ uri : `http://10.0.2.2:8000/uploads/articles/${item.image}` }} style={styles.imageContainer} />
                               <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
@@ -145,7 +145,7 @@ class Article extends Component {
                                     this.props.navigation.navigate("DetailArticle", {id:item.id}) 
                                 }>
                             <Col style={{flexDirection: "column"}}>
-                              <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
+                              <Image source={{ uri : `http://10.0.2.2:8000/uploads/articles/${item.image}` }} style={styles.imageContainer} />
                               <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
@@ -178,7 +178,7 @@ class Article extends Component {
                                     this.props.navigation.navigate("DetailArticle", {id:item.id}) 
                                 }>
                             <Col style={{flexDirection: "column"}}>
-                              <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
+                              <Image source={{ uri : `http://10.0.2.2:8000/uploads/articles/${item.image}` }} style={styles.imageContainer} />
                               <Text style={styles.menuText}>{`${item.id}`} | {`${item.title}`}</Text>
                             </Col>
                         </Row>
