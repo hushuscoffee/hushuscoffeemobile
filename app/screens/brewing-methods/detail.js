@@ -29,9 +29,22 @@ const URI = 'http://hushuscoffee.com/';
 class DetailBrewing extends Component {
   // eslint-disable-line
 
+  constructor(props)
+  {
+      super(props);
+
+      this.state = {
+          brewings: [],
+          dataSteps: [],
+          dataStepImage: [] 
+      }
+  }
+
   state = {
     brewings: [],
-    dataSource: []
+    dataSteps: [],
+    dataStepImage: [],
+    testRenderData: []
   }
 
   fetchData = async () => {
@@ -44,61 +57,127 @@ class DetailBrewing extends Component {
       for(var i in obj){
         arrData.push(obj[i]);
       }
-
-      // var str = JSON.parse(arrData); 
-        
-      var decode1 = arrData.replace(/\\u2019/g, "'");
-      var decode2 = decode1.replace(/\\u201c/g, '"');
-      var decode3 = decode2.replace(/\\u201d/g, '"');
-
+      
       this.setState({
-          brewings: decode1
+          brewings: arrData
       });
+  }
+
+  fetchDataSteps = () => {
+    fetch(URI + 'api/brewing/1')
+    .then((response) => response.json())
+    .then((responseJson) => {
+
+        var stepData = JSON.parse(responseJson["data"][0]["steps"]);
+        var stringDataStep = JSON.stringify(stepData);
+        var splitStringStep = stringDataStep.replace(/[\"]+[,\"]+/g, '\n\n').replace(/\\[rn]+/g, '');
+        
+        var stepImage = JSON.parse(responseJson["data"][0]["step_images"]);
+        var stringDataStepImage = JSON.stringify(stepImage);
+        var splitStringStepImage = stringDataStepImage.replace(/\[(.*?)\]/g, "$1")
+        .replace(/[\"]/g, '')
+        .replace(/[\,]/g, '\n');
+
+        var lData = splitStringStep.search(/\n+[A-Z]/g);
+
+        this.setState({
+          dataSteps: splitStringStep
+        });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  fetchDataStepImage = () => {
+    fetch(URI + 'api/brewing/1')
+    .then((response) => response.json())
+    .then((responseJson) => {
+
+        var stepImage = JSON.parse(responseJson["data"][0]["step_images"]);
+        var stringDataStepImage = JSON.stringify(stepImage);
+        var splitStringStepImage = stringDataStepImage.replace(/\[(.*?)\]/g, "$1")
+        .replace(/[\"]/g, '')
+        .replace(/[\,]/g, '\n\n');
+
+        let img = [];
+        let displayImage = [];
+        let arrDataImg = [];
+        let lengthDataImage = stepImage.length;
+
+        for(var i = 0; i < stepImage.length; i++){
+          img.push(stepImage[i]);
+        }
+
+        for(var i = 0; i < img.length; i++){
+          displayImage.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${img[i]}` }} />);
+        }
+        
+        for(var i = 0; i < lengthDataImage; i++){
+          arrDataImg.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${displayImage[i]["props"]["source"]["uri"]}` }} />);
+        }
+
+        this.setState({
+          testRenderData: arrDataImg
+        });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   componentDidMount(){
     this.fetchData();
+    this.fetchDataSteps();
+    this.fetchDataStepImage();
   }
 
-   _onPressButton() {
-    return fetch(URI + 'api/brewing/1')
-      .then((response) => response.json())
-      .then((responseJson) => {
+  _onPressButton() {
+  return fetch(URI + 'api/brewing/1')
+    .then((response) => response.json())
+    .then((responseJson) => {
 
-        var aData = [];
-        var matches = [];
-        var obj = responseJson.data;
+      var stepData = JSON.parse(responseJson["data"][0]["steps"]);
+      var stringDataStep = JSON.stringify(stepData);
+      var splitStringStep = stringDataStep.replace(/[\"]+[,\"]+/g, '\n\n').replace(/\\[rn]+/g, '');
+      
+      var stepImage = JSON.parse(responseJson["data"][0]["step_images"]);
+      var stringDataStepImage = JSON.stringify(stepImage);
+      var splitStringStepImage = stringDataStepImage.replace(/\[(.*?)\]/g, "$1")
+      .replace(/[\"]/g, '')
+      .replace(/[\,]/g, '\n');
 
-        for(var i = 0; i < obj.length; i++){
-          aData.push(JSON.stringify(obj[i]['steps']));
-        }
+      var concatData = stepData.map(
+        (element, index) => element + stepImage[index] + '\n\n'
+      );
 
-        // alert(obj[0].steps.toString());
-        alert(JSON.parse(aData).split(","));
-        var str = JSON.parse(aData); 
-        
-        var decode1 = str.replace(/\\u2019/g, "'");
-        var decode2 = decode1.replace(/\\u201c/g, '"');
-        var decode3 = decode2.replace(/\\u201d/g, '"');
+      let img = [];
+      let displayImage = [];
+      let arrDataImg = [];
+      let lengthDataImage = stepImage.length;
 
-        // alert(decode3);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    }
-
-  constructor(props)
-  {
-      super(props);
-
-      this.state = {
-          brewings: []
+      for(var i = 0; i < stepImage.length; i++){
+        img.push(stepImage[i]);
       }
+
+      for(var i = 0; i < img.length; i++){
+        displayImage.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${img[i]}` }} />);
+      }
+      
+      for(var i = 0; i < lengthDataImage; i++){
+        arrDataImg.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${displayImage[i]["props"]["source"]["uri"]}` }} />);
+      }
+
+      console.log(arrDataImg);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
-  render() {
-    return (
+  render(){
+
+    return (      
       <Container>
         <Header style={styles.header}>
           <Left>
@@ -123,7 +202,8 @@ class DetailBrewing extends Component {
         </Header>
         
         <Content padder>
-              <FlatList
+
+              {/* <FlatList
                 data={this.state.brewings}
                 keyExtractor={(brewing, i) => i.toString()}
                 renderItem={({item}) => 
@@ -141,22 +221,27 @@ class DetailBrewing extends Component {
                               />
                             </Col>
                             <Col>
-                                <Text key={item.id}>Step Image</Text>
-                                {/* <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item.step_image}` }} style={styles.imageContainer} /> */}
-                                  { this.state.brewings.map(item => {
-                                      return <HTMLView value={ `${item.steps}` } />
-                                  }) }
+                                <Text>
+                                  Steps
+                                </Text>
+                                { this.state.brewings.map(item => {
+                                    return <HTMLView key={item.id} value={ JSON.parse(`${item.steps}`) } />
+                                }) }
                             </Col>
                         </Row>
                     </Grid>
                 }
-              />
-        </Content>
+              /> */}
+              {/* <Text>
+                {this.state.lengthData}
+                {this.state.dataSteps}
+              </Text> */}
 
-        <Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }} 
-          onPress={ this._onPressButton }>
-          Click here
-        </Text>
+              <Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }} 
+                onPress={ this._onPressButton }>
+                Click here
+              </Text>
+        </Content>        
       </Container>
     );
   }
