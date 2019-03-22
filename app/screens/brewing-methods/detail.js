@@ -110,11 +110,11 @@ class DetailBrewing extends Component {
         }
 
         for(var i = 0; i < img.length; i++){
-          displayImage.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${img[i]}` }} />);
+          displayImage.push(<Image source={{uri: `http://10.0.2.2:8000/uploads/brewings/steps/${img[i]}` }} />);
         }
         
         for(var i = 0; i < lengthDataImage; i++){
-          arrDataImg.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${displayImage[i]["props"]["source"]["uri"]}` }} />);
+          arrDataImg.push(<Image source={{uri: `http://10.0.2.2:8000/uploads/brewings/steps/${displayImage[i]["props"]["source"]["uri"]}` }} />);
         }
 
         this.setState({
@@ -161,11 +161,11 @@ class DetailBrewing extends Component {
       }
 
       for(var i = 0; i < img.length; i++){
-        displayImage.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${img[i]}` }} />);
+        displayImage.push(<Image source={{uri: `http://10.0.2.2:8000/uploads/brewings/steps/${img[i]}` }} />);
       }
       
       for(var i = 0; i < lengthDataImage; i++){
-        arrDataImg.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${displayImage[i]["props"]["source"]["uri"]}` }} />);
+        arrDataImg.push(<Image source={{uri: `http://10.0.2.2:8000/uploads/brewings/steps/${displayImage[i]["props"]["source"]["uri"]}` }} />);
       }
 
       console.log(arrDataImg);

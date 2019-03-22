@@ -1,1 +1,5 @@
-{}
+{
+    "cli_validated": true,
+    "version": "4.9.0",
+    "error": "wrong number of arguments"
+}
