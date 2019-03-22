@@ -23,6 +23,7 @@ View
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import HTMLView from "react-native-htmlview";
+import { bold } from "ansi-colors";
 
 const URI = 'http://hushuscoffee.com/';
 
@@ -33,23 +34,29 @@ class DetailBrewing extends Component {
   {
       super(props);
   }
+
   state = {
     brewings: [],
     dataSteps: [],
     dataIngredients: [],
     dataTemperature: [],
     dataTime: [],
-    dataTools: []
+    dataTools: [],
+    desc: ''
   }
 
   fetchData = async () => {
       const {params} = this.props.navigation.state;
       const response = await fetch(URI + 'api/brewing/' + params.id);
       const json = await response.json();
+      var stringdesc = json.data[0].description;
+      var splitdescription = JSON.stringify(stringdesc);
+      var description = splitdescription.replace(/[\"]+/g, '').replace(/\\[rn]+/g, '');
       this.setState({
-          brewings: json.data
+          brewings: json.data,
+          desc : description
       });
-      console.log(this.state.brewings);
+      
   }
 
   fetchDataSteps = async () => {
@@ -93,7 +100,7 @@ class DetailBrewing extends Component {
       console.error(error);
     });
   }
-
+  
   componentDidMount(){
     this.fetchData();
     this.fetchDataSteps();
@@ -136,10 +143,7 @@ class DetailBrewing extends Component {
       <Container>
         <Header style={styles.header}>
           <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
-            >
+            <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
               <Icon name="menu" style={{color:"black"}}/>
             </Button>
           </Left>
@@ -167,23 +171,30 @@ class DetailBrewing extends Component {
                                 <Text style={{fontSize:30, textAlign:"auto", fontWeight: 'bold'}}>{`${item.title}`}</Text>
                             </Col>
                             <Col style={{flexDirection: "column"}}>
-                                <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
+                                <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={{ width: '100%', height: 200, margin: 7 }} />
                             </Col>
                             <Col>
                               <HTMLView
-                                value={ `${item.description}` }
+                                value={this.state.desc}
+                                stylesheet={stylesHTML}
                               />
                             </Col>
                         </Row>
                     </Grid>
                 }
               />
-              <Text>Brewing Time</Text>
-              <Text>{this.state.dataTime.time1} - {this.state.dataTime.time2} {this.state.dataTime.unit}</Text>
-              <Text>Water Temperature</Text>
-              <Text>{this.state.dataTemperature.temperature} {this.state.dataTemperature.unit}</Text>
-              <Text>Ingredients</Text>
+
+              <Text style={{ fontSize: 20 }}>Brewing Time</Text>
+              <Text style={stylesHTML}>{this.state.dataTime.time1} - {this.state.dataTime.time2}   {this.state.dataTime.unit}
+              </Text>
+              <Text style={{ fontSize: 20 }}>Water Temperature</Text>
+              <Text style={stylesHTML}>
+                {this.state.dataTemperature.temperature} {this.state.dataTemperature.unit}
+              </Text>
+              
+              <Text style={{ fontSize: 20 }}>Ingredients</Text>
               <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
+
               <FlatList
                 data={this.state.dataIngredients}
                 keyExtractor={(stepIngredient, i) => i.toString()}
@@ -191,14 +202,14 @@ class DetailBrewing extends Component {
                     <Grid>
                         <Row >
                             <Col>
-                              <Text style={styles.menuText}>{`${item.name}`} {`${item.amount}`} {`${item.unit}`}</Text>
+                              <Text style={stylesHTML}>{`${item.name}`} {`${item.amount}`} {`${item.unit}`}</Text>
                             </Col>
                         </Row>
                     </Grid>
                 }
               />
               </View>
-              <Text>Tools</Text>
+              <Text style={{ fontSize: 20 }}>Tools</Text>
               <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
             <FlatList
                 data={this.state.dataTools}
@@ -207,14 +218,14 @@ class DetailBrewing extends Component {
                     <Grid>
                         <Row >
                             <Col>
-                              <Text style={styles.menuText}>{`${item.name}`} {`${item.amount}`} {`${item.unit}`}</Text>
+                              <Text style={stylesHTML}>{`${item.name}`} {`${item.amount}`} {`${item.unit}`}</Text>
                             </Col>
                         </Row>
                     </Grid>
                 }
             />
             </View>
-              <Text>Steps</Text>
+              <Text style={{ fontSize: 20 }}>Steps</Text>
               <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
                 <FlatList
                     data={this.state.dataSteps}
@@ -233,5 +244,13 @@ class DetailBrewing extends Component {
     );
   }
 }
+
+const stylesHTML = StyleSheet.create({
+  p: {
+    fontFamily: "Avenir-Regular",
+    color: "#777",
+    fontSize: 15
+  }
+});
 
 export default DetailBrewing;
