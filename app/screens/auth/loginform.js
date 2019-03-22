@@ -61,6 +61,7 @@ class LoginForm extends Component {
         this.setState({
             loading: false
         }, async ()=>{
+          // console.log(response);
           if (response.message != 'error') {
             await AsyncStorage.setItem('idUserHushus', response.data.id.toString());
             await AsyncStorage.getItem('idUserHushus').then(console.log);
