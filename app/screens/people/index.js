@@ -76,7 +76,7 @@ class People extends Component {
       <Container>
         <Header style={styles.header}>
           <Left>
-            <Button transparent onPress={()=>tthis.props.navigation.openDrawer()}>
+            <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
               <Icon name="menu" style={{color:"black"}}/>
             </Button>
           </Left>
@@ -85,10 +85,10 @@ class People extends Component {
           </Body>
           <Right>
             <Button transparent>
-              <Icon name='search' style={{color:"black"}}/>
+              {/* <Icon name='search' style={{color:"black"}}/> */}
             </Button>
             <Button transparent>
-              <Icon name='more' style={{color:"black"}}/>
+              {/* <Icon name='more' style={{color:"black"}}/> */}
             </Button>
           </Right>
         </Header>

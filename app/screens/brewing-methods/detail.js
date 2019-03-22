@@ -148,10 +148,10 @@ class DetailBrewing extends Component {
           </Body>
           <Right>
             <Button transparent>
-              <Icon name='search' style={{color:"black"}}/>
+              {/* <Icon name='search' style={{color:"black"}}/> */}
             </Button>
             <Button transparent>
-              <Icon name='more' style={{color:"black"}}/>
+              {/* <Icon name='more' style={{color:"black"}}/> */}
             </Button>
           </Right>
         </Header>

@@ -61,13 +61,13 @@ class Home extends Component {
       <Title style={styles.title}>Hushus Coffee</Title>
     </Body>
     <Right>
-      <Button transparent>
-        <Icon name='search' style={{color:"black"}}/>
-      </Button>
-      <Button transparent>
-        <Icon name='more' style={{color:"black"}}/>
-      </Button>
-    </Right>
+            <Button transparent>
+              {/* <Icon name='search' style={{color:"black"}}/> */}
+            </Button>
+            <Button transparent>
+              {/* <Icon name='more' style={{color:"black"}}/> */}
+            </Button>
+          </Right>
         </Header>
         <Content padder>
         <Grid style={{alignContent:"center", padding:6}}>

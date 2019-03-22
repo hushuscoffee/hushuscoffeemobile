@@ -64,12 +64,8 @@ class LoginForm extends Component {
           // console.log(response);
           if (response.message != 'error') {
             await AsyncStorage.setItem('idUserHushus', response.data.id.toString());
-            await AsyncStorage.getItem('idUserHushus').then(console.log);
-            await AsyncStorage.getAllKeys().then(console.log); // ['foo']
-            // await AsyncStorage.setItem('foo', 'bar');
-            // await AsyncStorage.getItem('foo').then(console.log); // 'bar'
-            // await AsyncStorage.getAllKeys().then(console.log); // ['foo']
-            
+            await AsyncStorage.getItem('idUserHushus');
+            await AsyncStorage.getAllKeys();            
                 const resetAction = StackActions.reset({
                   index: 1,
                   actions: [

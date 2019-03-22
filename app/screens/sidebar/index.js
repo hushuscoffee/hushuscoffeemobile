@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image,AsyncStorage,TouchableOpacity } from "react-native";
+import { Image,AsyncStorage,TouchableOpacity,FlatList } from "react-native";
 import {
   Content,
   Text,
@@ -9,7 +9,8 @@ import {
   Container,
   Left,
   Right,
-  Badge
+  Badge,
+  View
 } from "native-base";
 import styles from "./style";
 import { NavigationActions, StackActions } from 'react-navigation';
@@ -87,7 +88,8 @@ class SideBar extends Component {
     this.state = {
       shadowOffsetWidth: 1,
       shadowRadius: 4,
-      idUserHushus: null
+      idUserHushus: null,
+      fullname: null
     };
   }
 
@@ -95,7 +97,17 @@ class SideBar extends Component {
       await AsyncStorage.getItem('idUserHushus').then(value =>
       this.setState({ idUserHushus: value })
     );
+    console.log(this.state.idUserHushus);
+    console.log("coba");
+    if(this.state.idUserHushus != null){
+      const profile = await fetch('http://hushuscoffee.com/api/people/'+ this.state.idUserHushus);
+      const json = await profile.json();
+      this.setState({
+        fullname: json.data[0].fullname
+      });
+    }
   };
+
 
   _handleLogOut = () => {
     AsyncStorage.removeItem('idUserHushus');
@@ -123,7 +135,11 @@ class SideBar extends Component {
             style={{ flex: 1, backgroundColor: "#fff", top: -1 }}
           >
             <Image source={drawerCover} style={styles.drawerCover} />
-          {/* <Text> Auth {this.state.idUserHushus} </Text> */}
+            <Left>
+                    <Text style={{ color: "#000", fontSize: 20}}>
+            {`${this.state.fullname}`}
+            </Text>
+                  </Left>
             <List
               dataArray={datas_auth}
               renderRow={data =>
