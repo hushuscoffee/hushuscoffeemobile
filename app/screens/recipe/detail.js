@@ -27,7 +27,7 @@ import { bold } from "ansi-colors";
 
 const URI = 'http://hushuscoffee.com/';
 
-class DetailBrewing extends Component {
+class DetailRecipe extends Component {
   // eslint-disable-line
 
   constructor(props)
@@ -36,24 +36,22 @@ class DetailBrewing extends Component {
   }
 
   state = {
-    brewings: [],
+    recipes: [],
     dataSteps: [],
     dataIngredients: [],
-    dataTemperature: [],
-    dataTime: [],
     dataTools: [],
     desc: ''
   }
 
   fetchData = async () => {
       const {params} = this.props.navigation.state;
-      const response = await fetch(URI + 'api/brewing/' + params.id);
+      const response = await fetch(URI + 'api/recipe/' + params.id);
       const json = await response.json();
       var stringdesc = json.data[0].description;
       var splitdescription = JSON.stringify(stringdesc);
       var description = splitdescription.replace(/[\"]+/g, '').replace(/\\[rn]+/g, '');
       this.setState({
-          brewings: json.data,
+          recipes: json.data,
           desc : description
       });
       
@@ -61,7 +59,7 @@ class DetailBrewing extends Component {
 
   fetchDataSteps = async () => {
     const {params} = this.props.navigation.state;
-    await fetch(URI + 'api/brewing/'+ params.id)
+    await fetch(URI + 'api/recipe/'+ params.id)
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -82,16 +80,12 @@ class DetailBrewing extends Component {
         }
 
         var ingredients = JSON.parse(responseJson["data"][0]["ingredients"]);        
-        var temperature = JSON.parse(responseJson["data"][0]["temperature"]);
-        var time = JSON.parse(responseJson["data"][0]["time"]);
         var tools = JSON.parse(responseJson["data"][0]["tools"]);
         
         this.setState({
           dataSteps: obj.data,
           dataIngredients:ingredients,
-          dataTemperature:temperature,
-          dataTools:tools,
-          dataTime:time
+          dataTools:tools
         });
 
         console.log(this.state.dataSteps);
@@ -118,7 +112,7 @@ class DetailBrewing extends Component {
       data.map((item, index) => {
         return(
           <View key={index}>
-            <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item}` }} style={styles.imageContainer} />
+            <Image source={{uri: `http://hushuscoffee.com/uploads/recipes/steps/${item}` }} style={styles.imageContainer} />
           </View>
         )
       })
@@ -148,7 +142,7 @@ class DetailBrewing extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={styles.title}>Brewing Method</Title>
+            <Title style={styles.title}>Recipe</Title>
           </Body>
           <Right>
             <Button transparent>
@@ -162,8 +156,8 @@ class DetailBrewing extends Component {
         
         <Content padder>
               <FlatList
-                data={this.state.brewings}
-                keyExtractor={(brewing, i) => i.toString()}
+                data={this.state.recipes}
+                keyExtractor={(recipe, i) => i.toString()}
                 renderItem={({item}) => 
                     <Grid style={{padding: 15}}>
                         <Row style={{justifyContent: "center", flexDirection: "column"}}>
@@ -171,7 +165,7 @@ class DetailBrewing extends Component {
                                 <Text style={{fontSize:30, textAlign:"auto", fontWeight: 'bold'}}>{`${item.title}`}</Text>
                             </Col>
                             <Col style={{flexDirection: "column"}}>
-                                <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={{ width: '100%', height: 200, margin: 7 }} />
+                                <Image source={{uri: `http://hushuscoffee.com/uploads/recipes/${item.image}` }} style={{ width: '100%', height: 200, margin: 7 }} />
                             </Col>
                             <Col>
                               <HTMLView
@@ -183,16 +177,7 @@ class DetailBrewing extends Component {
                     </Grid>
                 }
               />
-
-              <Text style={{ fontSize: 20 }}>Brewing Time</Text>
-              <Text style={stylesHTML}>{this.state.dataTime.time1} - {this.state.dataTime.time2}   {this.state.dataTime.unit}
-              </Text>
-              <Text></Text>
-              <Text style={{ fontSize: 20 }}>Water Temperature</Text>
-              <Text style={stylesHTML}>
-                {this.state.dataTemperature.temperature} {this.state.dataTemperature.unit}
-              </Text>
-              <Text></Text>
+              
               <Text style={{ fontSize: 20 }}>Ingredients</Text>
               <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
 
@@ -234,11 +219,11 @@ class DetailBrewing extends Component {
                     data={this.state.dataSteps}
                     keyExtractor={(stepData, i) => i.toString()}
                     renderItem={({item}) => 
-                      <View style={{flex:1}}>
-                        <Text style={{ width: '100%', padding: 10 }}> {`${item.step}`}</Text>
-                        <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item.image}` }} style={{ height: 200, width: '100%', margin: 7 }} resizeMode="contain"/>                        
-                        <Text></Text>
-                      </View>
+                    <View style={{flex:1}}>
+                    <Text style={{ width: '100%', padding: 10 }}> {`${item.step}`}</Text>
+                    <Image source={{uri: `http://hushuscoffee.com/uploads/recipes/steps/${item.image}` }} style={{ width: '100%', height: '100%', margin: 7 }} />                        
+                    <Text></Text>
+                  </View>
                     }
                 />
               </View>
@@ -256,4 +241,4 @@ const stylesHTML = StyleSheet.create({
   }
 });
 
-export default DetailBrewing;
+export default DetailRecipe;

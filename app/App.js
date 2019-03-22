@@ -8,11 +8,12 @@ import AuthRegister from "./screens/auth/register";
 import DetailArticle from "./screens/article/detail";
 import DetailPeople from "./screens/people/detail";
 import DetailBrewing from "./screens/brewing-methods/detail/";
+import DetailRecipe from "./screens/recipe/detail";
 
 import AllEvents from "./screens/article/all-events/";
 import AllNews from "./screens/article/all-news/";
 import AllTips from "./screens/article/all-tips/";
-import AllRecipes from "./screens/article/all-recipe/";
+import Recipes from "./screens/recipe/";
 import BrewingMethods from "./screens/brewing-methods/";
 import Article from "./screens/article/";
 import People from "./screens/people/";
@@ -21,7 +22,7 @@ import SideBar from "./screens/sidebar";
 const Drawer = createDrawerNavigator(
   {
     Home: { screen: Home },
-    AllRecipes: { screen: AllRecipes },
+    Recipes: { screen: Recipes },
     BrewingMethods: { screen: BrewingMethods },
     People: { screen: People },
     AuthLogin: { screen: AuthLogin },
@@ -42,6 +43,7 @@ const AppNavigator = createStackNavigator(
     Drawer: { screen: Drawer },
     Home: { screen: Home },
     DetailArticle: { screen: DetailArticle },
+    DetailRecipe: { screen: DetailRecipe },
     DetailBrewing: { screen: DetailBrewing },
     DetailPeople: { screen: DetailPeople },
     AllEvents: { screen: AllEvents },

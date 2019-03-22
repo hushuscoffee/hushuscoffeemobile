@@ -34,7 +34,7 @@ const datas_non_auth = [
   },
   {
     name: "Recipe",
-    route: "AllRecipes",
+    route: "Recipes",
     icon: "clipboard"
   },
   {
@@ -72,7 +72,7 @@ const datas_auth = [
   },
   {
     name: "Recipe",
-    route: "AllRecipes",
+    route: "Recipes",
     icon: "clipboard"
   },
   {

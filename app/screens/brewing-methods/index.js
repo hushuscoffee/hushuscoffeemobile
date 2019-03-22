@@ -172,11 +172,15 @@ class BrewingMethods extends Component {
           </Grid>
 
           <Row style={styles.title}>
-            <Text style={{fontSize:24, marginTop: 36}}>New Brewing Methods</Text>
+          <Left>
+            <Text style={{fontSize:24, marginTop: 36}}>Brewing Methods</Text>
+            </Left>
+            {/* <Right>
             <Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }} 
               onPress={ () => this.props.navigation.navigate("AllBrewings") }>
               View All
             </Text>
+            </Right> */}
           </Row>
 
           <View>
