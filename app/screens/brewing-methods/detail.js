@@ -165,22 +165,19 @@ class DetailBrewing extends Component {
                 }
               />
               <Text>Steps</Text>
-              <View > 
-            <FlatList
-                data={this.state.dataSteps}
-                keyExtractor={(stepData, i) => i.toString()}
-                renderItem={({item}) => 
-                    <Grid>
-                        <Row >
-                            <Col>
-                            <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item.image}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}> {`${item.step}`}</Text>
-                            </Col>
-                        </Row>
-                    </Grid>
-                }
-            />
-          </View>
+              <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
+                <FlatList
+                    data={this.state.dataSteps}
+                    keyExtractor={(stepData, i) => i.toString()}
+                    renderItem={({item}) => 
+                      <View style={{flex:1, flexDirection: 'row'}}>
+                        <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item.image}` }} style={{ width: '35%', height: 100, margin: 7 }} />
+                            
+                        <Text style={{ width: '65%', textAlignVertical: "center", padding: 10 }}> {`${item.step}`}</Text>
+                      </View>
+                    }
+                />
+              </View>
         </Content>        
       </Container>
     );
