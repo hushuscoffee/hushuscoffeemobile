@@ -76,7 +76,7 @@ class People extends Component {
       <Container>
         <Header style={styles.header}>
           <Left>
-            <Button transparent onPress={()=>this.props.navigation.navigate("DrawerOpen")}>
+            <Button transparent onPress={()=>tthis.props.navigation.openDrawer()}>
               <Icon name="menu" style={{color:"black"}}/>
             </Button>
           </Left>
