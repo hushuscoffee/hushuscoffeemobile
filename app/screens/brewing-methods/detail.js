@@ -35,7 +35,11 @@ class DetailBrewing extends Component {
   }
   state = {
     brewings: [],
-    dataSteps: []
+    dataSteps: [],
+    dataIngredients: [],
+    dataTemperature: [],
+    dataTime: [],
+    dataTools: []
   }
 
   fetchData = async () => {
@@ -69,8 +73,18 @@ class DetailBrewing extends Component {
         for(var i = 0; i < stepImage.length; i++){
           obj['data'].push({"step":stepData[i],"image":stepImage[i]});
         }
+
+        var ingredients = JSON.parse(responseJson["data"][0]["ingredients"]);        
+        var temperature = JSON.parse(responseJson["data"][0]["temperature"]);
+        var time = JSON.parse(responseJson["data"][0]["time"]);
+        var tools = JSON.parse(responseJson["data"][0]["tools"]);
+        
         this.setState({
-          dataSteps: obj.data
+          dataSteps: obj.data,
+          dataIngredients:ingredients,
+          dataTemperature:temperature,
+          dataTools:tools,
+          dataTime:time
         });
 
         console.log(this.state.dataSteps);
@@ -164,6 +178,42 @@ class DetailBrewing extends Component {
                     </Grid>
                 }
               />
+              <Text>Brewing Time</Text>
+              <Text>{this.state.dataTime.time1} - {this.state.dataTime.time2} {this.state.dataTime.unit}</Text>
+              <Text>Water Temperature</Text>
+              <Text>{this.state.dataTemperature.temperature} {this.state.dataTemperature.unit}</Text>
+              <Text>Ingredients</Text>
+              <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
+              <FlatList
+                data={this.state.dataIngredients}
+                keyExtractor={(stepIngredient, i) => i.toString()}
+                renderItem={({item}) => 
+                    <Grid>
+                        <Row >
+                            <Col>
+                              <Text style={styles.menuText}>{`${item.name}`} {`${item.amount}`} {`${item.unit}`}</Text>
+                            </Col>
+                        </Row>
+                    </Grid>
+                }
+              />
+              </View>
+              <Text>Tools</Text>
+              <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
+            <FlatList
+                data={this.state.dataTools}
+                keyExtractor={(stepTool, i) => i.toString()}
+                renderItem={({item}) => 
+                    <Grid>
+                        <Row >
+                            <Col>
+                              <Text style={styles.menuText}>{`${item.name}`} {`${item.amount}`} {`${item.unit}`}</Text>
+                            </Col>
+                        </Row>
+                    </Grid>
+                }
+            />
+            </View>
               <Text>Steps</Text>
               <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
                 <FlatList
