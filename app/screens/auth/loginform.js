@@ -47,9 +47,9 @@ class LoginForm extends Component {
     fetch('http://hushuscoffee.com/api/login', {
      method: 'POST',
      headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                },
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
       // body : 
       body: JSON.stringify({
             username: this.state.username,
@@ -91,7 +91,6 @@ class LoginForm extends Component {
        
       }).done();
   }
-
 
   render() {
     const { navigate } = this.props.data;
