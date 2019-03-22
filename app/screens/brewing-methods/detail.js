@@ -69,9 +69,6 @@ class DetailBrewing extends Component {
         for(var i = 0; i < stepImage.length; i++){
           obj['data'].push({"step":stepData[i],"image":stepImage[i]});
         }
-        // console.log(obj.data);
-        // data_Steps = JSON.stringify(obj);
-        // console.log(data_Steps);
         this.setState({
           dataSteps: obj.data
         });
