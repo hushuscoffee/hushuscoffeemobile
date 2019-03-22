@@ -152,9 +152,7 @@ class Home extends Component {
                 renderItem={({item}) =>
                   <Grid style={{padding: 15}}>
                       <Row style={{justifyContent: "center", flexDirection: "row"}}
-                          onPress={ ()=> 
-                              this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
-                          }>
+                          >
                           <Col style={{flexDirection: "column"}}>
                             <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
                             <Text style={styles.menuText}>{`${item.fullname}`}</Text>
