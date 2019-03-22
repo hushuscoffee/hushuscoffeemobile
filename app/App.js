@@ -46,7 +46,9 @@ const AppNavigator = createStackNavigator(
     DetailPeople: { screen: DetailPeople },
     AllEvents: { screen: AllEvents },
     AllNews: { screen: AllNews },
-    AllTips: { screen: AllTips }
+    AllTips: { screen: AllTips },
+    AuthLogin: { screen: AuthLogin },
+    AuthRegister: { screen: AuthRegister }
   },
   {
     initialRouteName: "Drawer",

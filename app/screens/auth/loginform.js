@@ -61,6 +61,7 @@ class LoginForm extends Component {
         this.setState({
             loading: false
         }, async ()=>{
+          // console.log(response);
           if (response.message != 'error') {
             await AsyncStorage.setItem('idUserHushus', response.data.id.toString());
             await AsyncStorage.getItem('idUserHushus').then(console.log);
@@ -107,7 +108,7 @@ class LoginForm extends Component {
               <Input secureTextEntry style={{borderColor:"black", borderBottomWidth:1, width:deviceWidth*0.9}} onChangeText={(text) => this.setState({password:text})}/>
             </Item>
           </Form>
-          <Text padder style={{color:"black", marginTop:20, marginLeft:15}}>Do not have an account? Create one here</Text>
+          <Text padder style={{color:"black", marginTop:20, marginLeft:15}} onPress={ () => this.props.navigation.navigate("AuthRegister") }>Do not have an account? Create one here</Text>
           <Button block style={{ margin: 15, marginTop: 30, backgroundColor:"#ffcd22"}} onPress={() => this.handleClick(navigate)}>
             <Text style={{color:"black"}}>Sign In</Text>
           </Button>

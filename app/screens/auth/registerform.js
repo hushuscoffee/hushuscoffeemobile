@@ -110,7 +110,7 @@ class RegisterForm extends Component {
               <Input secureTextEntry style={{borderColor:"black", borderBottomWidth:1, width:deviceWidth*0.9}} onChangeText={(text) => this.setState({password_confirmation:text})}/>
             </Item>
           </Form>
-          <Text padder style={{color:"black", marginTop:20, marginLeft:15}} onPress={ () => this.props.navigation.navigate("Login") }>Already have an account? Sign In here</Text>
+          <Text padder style={{color:"black", marginTop:20, marginLeft:15}} onPress={ () => this.props.navigation.navigate("AuthLogin") }>Already have an account? Sign In here</Text>
           <Button block style={{ margin: 15, marginTop: 30, backgroundColor:"#ffcd22"}} onPress={() => this.handleClick(navigate)}>
             <Text style={{color:"black"}}>Register</Text>
           </Button>
