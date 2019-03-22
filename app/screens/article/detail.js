@@ -24,7 +24,7 @@ import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import HTMLView from 'react-native-htmlview';
 
-const URI = 'http://10.0.2.2:8000/';
+const URI = 'http://hushuscoffee.com/';
 
 class DetailArticle extends Component {
   // eslint-disable-line
@@ -55,7 +55,7 @@ class DetailArticle extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
+              onPress={() => this.props.navigation.openDrawer()}
             >
               <Icon name="menu" style={{color:"black"}}/>
             </Button>
@@ -84,7 +84,7 @@ class DetailArticle extends Component {
                                 <Text style={{fontSize:17, textAlign:"auto", fontWeight: 'bold'}}>{`${item.title}`}</Text>
                             </Col>
                             <Col style={{flexDirection: "column"}}>
-                                <Image source={{uri: `http://10.0.2.2:8000/uploads/articles/${item.image}` }} style={styles.imageContainer} />
+                                <Image source={{uri: `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
                             </Col>
                             <Col>
                               <HTMLView

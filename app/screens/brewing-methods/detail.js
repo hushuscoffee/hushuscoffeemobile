@@ -32,89 +32,48 @@ class DetailBrewing extends Component {
   constructor(props)
   {
       super(props);
-
-      this.state = {
-          brewings: [],
-          dataSteps: [],
-          dataStepImage: [],
-          testRenderData: []
-      }
   }
-
   state = {
     brewings: [],
-    dataSteps: [],
-    dataStepImage: [],
-    testRenderData: []
+    dataSteps: []
   }
 
   fetchData = async () => {
       const {params} = this.props.navigation.state;
       const response = await fetch(URI + 'api/brewing/' + params.id);
       const json = await response.json();
-      const obj = json.data;
-      let arrData = [];
-
-      for(var i in obj){
-        arrData.push(obj[i]);
-      }
-      
       this.setState({
-          brewings: arrData
+          brewings: json.data
       });
+      console.log(this.state.brewings);
   }
 
-  fetchDataSteps = () => {
-    fetch(URI + 'api/brewing/1')
+  fetchDataSteps = async () => {
+    const {params} = this.props.navigation.state;
+    await fetch(URI + 'api/brewing/'+ params.id)
     .then((response) => response.json())
     .then((responseJson) => {
 
         var stepData = JSON.parse(responseJson["data"][0]["steps"]);
         var stringDataStep = JSON.stringify(stepData);
         var splitStringStep = stringDataStep.replace(/[\"]+[,\"]+/g, '\n\n').replace(/\\[rn]+/g, '');
-
-        var lData = splitStringStep.search(/\n+[A-Z]/g);
-
-        this.setState({
-          dataSteps: splitStringStep
-        });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
-
-  fetchDataStepImage = () => {
-    fetch(URI + 'api/brewing/1')
-    .then((response) => response.json())
-    .then((responseJson) => {
-
+        
         var stepImage = JSON.parse(responseJson["data"][0]["step_images"]);
         var stringDataStepImage = JSON.stringify(stepImage);
         var splitStringStepImage = stringDataStepImage.replace(/\[(.*?)\]/g, "$1")
         .replace(/[\"]/g, '')
-        .replace(/[\,]/g, '\n\n');
-
-        let img = [];
-        let displayImage = [];
-        let arrDataImg = [];
-        let lengthDataImage = stepImage.length;
-
-        for(var i = 0; i < stepImage.length; i++){
-          img.push(stepImage[i]);
-        }
-
-        for(var i = 0; i < img.length; i++){
-          displayImage.push(img[i]);
-        }
+        .replace(/[\,]/g, '\n');
         
-        for(var i = 0; i < lengthDataImage; i++){
-          arrDataImg.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${displayImage[i]}` }} />);
+        var data_Steps = '{"data":[]}';
+        var obj = JSON.parse(data_Steps);
+        for(var i = 0; i < stepImage.length; i++){
+          obj['data'].push({"step":stepData[i],"image":stepImage[i]});
         }
-
         this.setState({
-          dataStepImage: img  
-        })
+          dataSteps: obj.data
+        });
+
+        console.log(this.state.dataSteps);
     })
     .catch((error) => {
       console.error(error);
@@ -124,58 +83,6 @@ class DetailBrewing extends Component {
   componentDidMount(){
     this.fetchData();
     this.fetchDataSteps();
-    this.fetchDataStepImage();
-  }
-
-  _onPressButton = () => {
-  return fetch(URI + 'api/brewing/1')
-    .then((response) => response.json())
-    .then((responseJson) => {
-
-      var stepData = JSON.parse(responseJson["data"][0]["steps"]);
-      var stringDataStep = JSON.stringify(stepData);
-      var splitStringStep = stringDataStep.replace(/[\"]+[,\"]+/g, '\n\n').replace(/\\[rn]+/g, '');
-      
-      var stepImage = JSON.parse(responseJson["data"][0]["step_images"]);
-      var stringDataStepImage = JSON.stringify(stepImage);
-      var splitStringStepImage = stringDataStepImage.replace(/[\"]+[,\"]+/g, '\n\n').replace(/\\[rn]+/g, '');
-
-      var concatData = stepData.map(
-        (element, index) => element + stepImage[index] + '\n\n'
-      );
-
-      let img = [];
-      let displayImage = [];
-      let arrDataImg = [];
-      let lengthDataImage = stepImage.length;
-
-      for(var i = 0; i < stepImage.length; i++){
-        img.push(stepImage[i]);
-      }
-
-      for(var i = 0; i < img.length; i++){
-        displayImage.push(img[i]);
-      }
-      
-      for(var i = 0; i < lengthDataImage; i++){
-        arrDataImg.push(<Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${stepImage}` }} />);
-      }
-
-      var concatData = splitStringStep.map(
-        (element, index) => element + splitStringStepImage[index] + '\n\n'
-      );
-
-      console.log(concatData);
-      // console.log(typeof(splitStringStepImage));
-      // console.log(typeof(splitStringStep));
-
-      this.setState({
-        testRenderData: stepImage
-      })
-    })
-    .catch((error) => {
-      console.error(error);
-    });
   }
 
   dataImage(){
@@ -235,19 +142,15 @@ class DetailBrewing extends Component {
           </Right>
         </Header>
         
-        <Content padder>              
-              {/* {this.joinStepAndImage()} */}
-              {/* {this.state.testRenderData.map(data => 
-                <Image key={data} source={{uri: URI + "/uploads/brewings/steps/" + `${data}` }} />
-              )} */}
-              {/* <FlatList
+        <Content padder>
+              <FlatList
                 data={this.state.brewings}
                 keyExtractor={(brewing, i) => i.toString()}
                 renderItem={({item}) => 
                     <Grid style={{padding: 15}}>
                         <Row style={{justifyContent: "center", flexDirection: "column"}}>
                             <Col style={{flexDirection: "column"}}>
-                                <Text style={{fontSize:17, textAlign:"auto", fontWeight: 'bold'}}>{`${item.title}`}</Text>
+                                <Text style={{fontSize:30, textAlign:"auto", fontWeight: 'bold'}}>{`${item.title}`}</Text>
                             </Col>
                             <Col style={{flexDirection: "column"}}>
                                 <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
@@ -257,27 +160,27 @@ class DetailBrewing extends Component {
                                 value={ `${item.description}` }
                               />
                             </Col>
+                        </Row>
+                    </Grid>
+                }
+              />
+              <Text>Steps</Text>
+              <View > 
+            <FlatList
+                data={this.state.dataSteps}
+                keyExtractor={(stepData, i) => i.toString()}
+                renderItem={({item}) => 
+                    <Grid>
+                        <Row >
                             <Col>
-                                <Text>
-                                  Steps
-                                </Text>
-                                { this.state.brewings.map(item => {
-                                    return <HTMLView key={item.id} value={ JSON.parse(`${item.steps}`) } />
-                                }) }
+                            <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item.image}` }} style={styles.imageContainer} />
+                              <Text style={styles.menuText}> {`${item.step}`}</Text>
                             </Col>
                         </Row>
                     </Grid>
                 }
-              /> */}
-              {/* <Text>
-                {this.state.lengthData}
-                {this.state.dataSteps}
-              </Text> */}
-
-              <Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }} 
-                onPress={ this._onPressButton }>
-                Click here
-              </Text>
+            />
+          </View>
         </Content>        
       </Container>
     );

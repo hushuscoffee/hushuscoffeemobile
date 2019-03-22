@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Image, Dimensions } from "react-native";
-
+import RegisterForm from "./registerform";
 import {
   Container,
   Header,
@@ -50,30 +50,7 @@ class Register extends Component {
           </Right>
         </Header>
 
-        <Content padder>
-          <Form style={{marginTop:10}}>
-            <Item stackedLabel>
-              <Label>Username</Label>
-              <Input style={{borderColor:"black", borderBottomWidth:1, width:deviceWidth*0.9}}/>
-            </Item>
-            <Item stackedLabel style={{marginTop:30}}>
-              <Label>E-mail Address</Label>
-              <Input style={{borderColor:"black", borderBottomWidth:1, width:deviceWidth*0.9}}/>
-            </Item>
-            <Item stackedLabel style={{marginTop:30}}>
-              <Label>Password</Label>
-              <Input secureTextEntry style={{borderColor:"black", borderBottomWidth:1, width:deviceWidth*0.9}}/>
-            </Item>
-            <Item stackedLabel last style={{marginTop:30}}>
-              <Label>Confirm Password</Label>
-              <Input secureTextEntry style={{borderColor:"black", borderBottomWidth:1, width:deviceWidth*0.9}}/>
-            </Item>
-          </Form>
-          <Text padder style={{color:"black", marginTop:20, marginLeft:15}}>Already have an account? Sign In here</Text>
-          <Button block style={{ margin: 15, marginTop: 30, backgroundColor:"#ffcd22"}}>
-            <Text style={{color:"black"}}>Register</Text>
-          </Button>
-        </Content>
+        <RegisterForm data={this.props.navigation} />
       </Container>
     );
   }
