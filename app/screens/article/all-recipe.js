@@ -23,7 +23,7 @@ View
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
-const URI = 'http://10.0.2.2:8000/';
+const URI = 'http://hushuscoffee.com/';
 
 class AllRecipes extends Component {
 
@@ -80,7 +80,7 @@ class AllRecipes extends Component {
                                             this.props.navigation.navigate("DetailArticle", {id:item.id}) 
                                         }>
                                     <Col style={{flexDirection: "column"}}>
-                                    <Image source={{ uri : `http://10.0.2.2:8000/uploads/recipes/${item.image}` }} style={styles.imageContainer} />
+                                    <Image source={{ uri : `http://hushuscoffee.com/uploads/recipes/${item.image}` }} style={styles.imageContainer} />
                                     </Col>
                                     <Col style={{flexDirection: "column", marginLeft: -150}}>
                                         <Text>{`${item.title}`}</Text>

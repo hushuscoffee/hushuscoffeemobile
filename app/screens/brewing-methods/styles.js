@@ -28,6 +28,7 @@ export default {
     marginTop: 5
   },
   menuText: {
+    width: 600,
     marginTop: 10,
     fontSize: 14,
     width:110,

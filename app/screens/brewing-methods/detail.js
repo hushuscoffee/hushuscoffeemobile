@@ -24,7 +24,7 @@ import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import HTMLView from "react-native-htmlview";
 
-const URI = 'http://10.0.2.2:8000/';
+const URI = 'http://hushuscoffee.com/';
 
 class DetailBrewing extends Component {
   // eslint-disable-line
@@ -85,8 +85,39 @@ class DetailBrewing extends Component {
     this.fetchDataSteps();
   }
 
-  render(){
+  dataImage(){
+    let arrTest = [];
+    let data = this.state.testRenderData;
 
+    for(var i = 0; i < data.length; i++){
+      arrTest.push(data[i]);
+    }
+
+    return(
+      data.map((item, index) => {
+        return(
+          <View key={index}>
+            <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item}` }} style={styles.imageContainer} />
+          </View>
+        )
+      })
+    )
+  }
+
+  joinStepAndImage(){
+
+    var stepsString = this.state.dataSteps;
+    var stepsImage = this.state.dataStepImage;
+
+    var concatData = stepsImage.map(
+      (element, index) => element + stepsString[index] + '\n\n'
+    );
+
+    console.log(typeof(stepsString));
+    console.log(typeof(stepsImage));
+  }
+
+  render(){
     return (      
       <Container>
         <Header style={styles.header}>
@@ -122,7 +153,7 @@ class DetailBrewing extends Component {
                                 <Text style={{fontSize:30, textAlign:"auto", fontWeight: 'bold'}}>{`${item.title}`}</Text>
                             </Col>
                             <Col style={{flexDirection: "column"}}>
-                                <Image source={{uri: `http://10.0.2.2:8000/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
+                                <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/${item.image}` }} style={styles.imageContainer} />
                             </Col>
                             <Col>
                               <HTMLView
@@ -134,22 +165,19 @@ class DetailBrewing extends Component {
                 }
               />
               <Text>Steps</Text>
-              <View > 
-            <FlatList
-                data={this.state.dataSteps}
-                keyExtractor={(stepData, i) => i.toString()}
-                renderItem={({item}) => 
-                    <Grid>
-                        <Row >
-                            <Col>
-                            <Image source={{uri: `http://10.0.2.2:8000/uploads/brewings/steps/${item.image}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}> {`${item.step}`}</Text>
-                            </Col>
-                        </Row>
-                    </Grid>
-                }
-            />
-          </View>
+              <View style={{ flex:1, justifyContent:"center", margin:5 }}> 
+                <FlatList
+                    data={this.state.dataSteps}
+                    keyExtractor={(stepData, i) => i.toString()}
+                    renderItem={({item}) => 
+                      <View style={{flex:1, flexDirection: 'row'}}>
+                        <Image source={{uri: `http://hushuscoffee.com/uploads/brewings/steps/${item.image}` }} style={{ width: '35%', height: 100, margin: 7 }} />
+                            
+                        <Text style={{ width: '65%', textAlignVertical: "center", padding: 10 }}> {`${item.step}`}</Text>
+                      </View>
+                    }
+                />
+              </View>
         </Content>        
       </Container>
     );
