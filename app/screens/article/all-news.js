@@ -49,12 +49,9 @@ class AllNews extends Component {
             <Container>
                 <Header style={styles.header}>
                 <Left>
-                    <Button
-                    transparent
-                    onPress={() => this.props.navigation.openDrawer()}
-                    >
+                <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
                     <Icon name="menu" style={{color:"black"}}/>
-                    </Button>
+                </Button>
                 </Left>
                 <Body>
                     <Title style={styles.title}>All News</Title>

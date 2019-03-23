@@ -31,16 +31,21 @@ class DetailArticle extends Component {
 
   state = {
     articles: [],
-    html: ''
+    desc: ''
   }
 
   fetchData = async () => {
       const {params} = this.props.navigation.state;
       const response = await fetch(URI + 'api/articles/' + params.id);
       const json = await response.json();
+      var stringdesc = json.data[0].description;
+      var splitdescription = JSON.stringify(stringdesc);
+      var description = splitdescription.replace(/<\/?(?!img)\w*\b[^>]*>/ig, '');
+      var rsDesc = eval(description);
+
       this.setState({
           articles: json.data,
-          html: json.data.description
+          desc: rsDesc
       });
   }
 
@@ -49,13 +54,14 @@ class DetailArticle extends Component {
   }
 
   render() {   
+    alert(this.state.desc);
     return (
       <Container>
         <Header style={styles.header}>
           <Left>
-          <Button transparent onPress={()=>this.props.navigation.goBack()}>
-              <Icon name="navigate" style={{color:"black"}}/>
-            </Button>
+          <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
+            <Icon name="menu" style={{color:"black"}}/>
+          </Button>
           </Left>
           <Body>
             <Title style={styles.title}>Article</Title>
@@ -85,7 +91,7 @@ class DetailArticle extends Component {
                             </Col>
                             <Col>
                               <HTMLView
-                                value={ `${item.description}` }
+                                value={ this.state.desc }
                               />
                             </Col>
                         </Row>
@@ -97,5 +103,12 @@ class DetailArticle extends Component {
     );
   }
 }
+
+const stylesHTML = StyleSheet.create({
+  img: {
+    // max: 100%;
+    height: "auto"
+  }
+});
 
 export default DetailArticle;
