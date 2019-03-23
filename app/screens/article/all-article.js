@@ -77,10 +77,10 @@ class AllArticle extends Component {
                                         onPress={ ()=> 
                                             this.props.navigation.navigate("DetailArticle", {id:item.id}) 
                                         }>
-                                    <Col style={{flexDirection: "column"}}>
+                                    <Col style={{ flex:0, flexDirection: "column", width: '35%'}}>
                                     <Image source={{ uri : `http://hushuscoffee.com/uploads/articles/${item.image}` }} style={styles.imageContainer} />
                                     </Col>
-                                    <Col style={{flexDirection: "column", marginLeft: -150}}>
+                                    <Col style={{ flex:0, flexDirection: "column", width: '70%'}}>
                                         <Text>{`${item.title}`}</Text>
                                     </Col>
                                 </Row>

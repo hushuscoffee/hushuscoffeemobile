@@ -72,35 +72,35 @@ class Home extends Component {
         <Content padder>
         <Grid style={{alignContent:"center", padding:6}}>
           <Col style={styles.col}>
-          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22,height:dH*0.15,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Article")}>
-          <Image
-                source={notes}
-              />
-              <Text style={{textAlign:"center", color:"black"}}>Article</Text>
+              <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22,height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Article")}>
+              <Col style={styles.col}>
+                <Image source={notes} />
+                <Text style={{textAlign:"center", color:"black"}}>Article</Text>
+              </Col>
               </Button>
           </Col>
           <Col style={styles.col}>
-          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22,height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("BrewingMethods")}>
-          <Image
-                source={brewing}
-              />
+            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22,height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("BrewingMethods")}>
+            <Col style={styles.col}>
+              <Image source={brewing} />
               <Text style={{textAlign:"center", color:"black", fontSize:12.5}}>Brewing</Text>
-              </Button>
+            </Col>
+            </Button>
           </Col>
           <Col style={styles.col}>
-          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Recipes")}>
-          <Image
-                source={recipes}
-              />
+            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("Recipes")}>
+            <Col style={styles.col}>
+              <Image source={recipes} />
               <Text style={{textAlign:"center", color:"black"}}>Recipe</Text>
-              </Button>
+            </Col>
+            </Button>
           </Col>
           <Col style={styles.col}>
-          <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("People")}>
-          <Image
-                source={people}
-              />
+            <Button style={{ backgroundColor: "#ffcd22", borderRadius: 5, width: dW*0.22, height:100,justifyContent:"center", flexWrap:"wrap"}} onPress={() => this.props.navigation.navigate("People")}>
+            <Col style={styles.col}>
+              <Image source={people} />
               <Text style={{textAlign:"center", color:"black"}}>People</Text>
+            </Col>
               </Button>
           </Col>
         </Grid>

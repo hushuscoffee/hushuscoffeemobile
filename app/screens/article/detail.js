@@ -40,7 +40,7 @@ class DetailArticle extends Component {
       const json = await response.json();
       var stringdesc = json.data[0].description;
       var splitdescription = JSON.stringify(stringdesc);
-      var description = splitdescription.replace(/<\/?(?!img)\w*\b[^>]*>/ig, '');
+      var description = splitdescription.replace(/<\/?(?!a)(?!img)\w*\b[^>]*>/ig, '');
       var rsDesc = eval(description);
 
       this.setState({
@@ -53,8 +53,7 @@ class DetailArticle extends Component {
     this.fetchData();
   }
 
-  render() {   
-    alert(this.state.desc);
+  render() {
     return (
       <Container>
         <Header style={styles.header}>
