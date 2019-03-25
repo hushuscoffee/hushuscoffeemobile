@@ -25,29 +25,6 @@ import { Grid, Row, Col } from "react-native-easy-grid";
 
 import styles from "./styles";
 const deviceWidth = Dimensions.get("window").width;
-const logo = require("../../../assets/logo.png");
-const cardImage = require("../../../assets/drawer-cover.png");
-const articles = require("../../../assets/articles.png");
-const brewing = require("../../../assets/brewing.png");
-const notes = require("../../../assets/notes.png");
-const people = require("../../../assets/people.png");
-const recipes = require("../../../assets/recipes.png");
-const tools = require("../../../assets/tools.png");
-const article1 = require("../../../assets/article2.png");
-const article2 = require("../../../assets/article1.png");
-const article3 = require("../../../assets/article3.png");
-const people1 = require("../../../assets/man.png");
-const people2 = require("../../../assets/woman.png");
-const people3 = require("../../../assets/man.png");
-const people4 = require("../../../assets/people4.jpg");
-const people5 = require("../../../assets/people5.jpg");
-const people6 = require("../../../assets/people6.jpg");
-const people7 = require("../../../assets/people1.jpg");
-const people8 = require("../../../assets/people2.jpg");
-const people9 = require("../../../assets/people3.jpg");
-const people10 = require("../../../assets/people7.jpg");
-const people11 = require("../../../assets/people8.jpg");
-const people12 = require("../../../assets/people9.jpg");
 
 const URI = 'http://hushuscoffee.com/';
 
