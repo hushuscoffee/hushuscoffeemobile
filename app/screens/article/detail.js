@@ -40,7 +40,7 @@ class DetailArticle extends Component {
       const json = await response.json();
       var stringdesc = json.data[0].description;
       var splitdescription = JSON.stringify(stringdesc);
-      var description = splitdescription.replace(/<\/?(?!a)(?!img)\w*\b[^>]*>/ig, '');
+      var description = splitdescription.replace(/<\/?(?!a)(?!img)\w*\b[^>]*>/ig, '').replace(/(?:\\[rn])+/g, "").replace(/(<a[^>]*)(style[^>]*[>])/g, '');
       var rsDesc = eval(description);
 
       this.setState({
@@ -91,6 +91,7 @@ class DetailArticle extends Component {
                             <Col>
                               <HTMLView
                                 value={ this.state.desc }
+                                stylesheet = { stylesHTML }
                               />
                             </Col>
                         </Row>
@@ -104,9 +105,8 @@ class DetailArticle extends Component {
 }
 
 const stylesHTML = StyleSheet.create({
-  img: {
-    // max: 100%;
-    height: "auto"
+  a: {
+    color: "#1a0dab"
   }
 });
 
