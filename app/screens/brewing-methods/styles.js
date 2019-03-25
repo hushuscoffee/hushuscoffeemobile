@@ -28,11 +28,12 @@ export default {
     marginTop: 5
   },
   menuText: {
-    width: 600,
+    flex: 1,
+    justifyContent: "space-around",
     marginTop: 10,
-    fontSize: 14,
-    width:110,
-    color:black
+    fontSize: 13,
+    width: "auto",
+    color: black
   },
   title: {
     color: '#000'
@@ -44,13 +45,27 @@ export default {
     marginTop: 10,
     flexDirection: 'row',
     flexWrap: "wrap",
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
   articleTitle: {
     marginTop: 10,
     fontSize: 10
   },
   contentSpace: {
-    marginLeft: 15
+    marginLeft: 0
+  },
+  gridStyle: {
+    width: '100%'
+  },
+  cardStyle: {
+    flex: 1,
+    width: '33%',
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  col: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
   }
 };

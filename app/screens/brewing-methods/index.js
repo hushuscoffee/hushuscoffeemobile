@@ -16,8 +16,6 @@ import {
   Card,
   CardItem,
   Thumbnail,
-  ListItem,
-  List,
   Toast,
   View
 } from "native-base";
@@ -90,9 +88,9 @@ class BrewingMethods extends Component {
         </Header>
         
         <Content padder>
-          <Grid>
+          <Grid style={styles.gridStyle}>
             <Row style={styles.container}>
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={styles.col}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={pourOver} />
@@ -100,7 +98,7 @@ class BrewingMethods extends Component {
                   <Text style={styles.menuText}>POUR OVER</Text>
                 </Col>
               </Card>
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={syphone} />
@@ -108,7 +106,7 @@ class BrewingMethods extends Component {
                   <Text style={styles.menuText}>SYPHON</Text>
                 </Col>
               </Card>
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={chemex} />
@@ -118,7 +116,7 @@ class BrewingMethods extends Component {
               </Card>
             </Row>
             <Row style={styles.container}>
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={styles.col}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={aeropress} />
@@ -126,7 +124,7 @@ class BrewingMethods extends Component {
                   <Text style={styles.menuText}>AEROPRESS</Text>
                 </Col>
               </Card>  
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={vietnamDrip} />
@@ -134,7 +132,7 @@ class BrewingMethods extends Component {
                   <Text style={styles.menuText}>VIETNAM DRIP</Text>
                 </Col>
               </Card>  
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={turkishCezve} />
@@ -144,7 +142,7 @@ class BrewingMethods extends Component {
               </Card>
             </Row>
             <Row style={styles.container}>
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={styles.col}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={mokaPot} />
@@ -152,7 +150,7 @@ class BrewingMethods extends Component {
                   <Text style={styles.menuText}>MOKA POT</Text>
                 </Col>
               </Card>
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={coffeeKhop} />
@@ -160,7 +158,7 @@ class BrewingMethods extends Component {
                   <Text style={styles.menuText}>COFFEE KHOP</Text>
                 </Col>
               </Card>
-              <Card>
+              <Card style={styles.cardStyle}>
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem button onPress={ () => this.props.navigation.navigate("#") }>
                     <Image source={hario} />

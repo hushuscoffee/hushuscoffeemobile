@@ -15,8 +15,6 @@ Text,
 Card,
 CardItem,
 Thumbnail,
-ListItem,
-List,
 Toast,
 View
 } from "native-base";
