@@ -44,7 +44,7 @@ class AllNews extends Component {
 
     render(){
         return(
-            <Container style={{ marginBottom: 60 }}>
+            <Container style={{ marginBottom: 50 }}>
                 <Header style={styles.header}>
                 <Left>
                 <Button transparent onPress={()=>this.props.navigation.openDrawer()}>

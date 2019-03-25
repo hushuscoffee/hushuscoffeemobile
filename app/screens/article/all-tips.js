@@ -44,7 +44,7 @@ class AllTips extends Component {
 
     render(){
         return(
-            <Container>
+            <Container style={{marginBottom: 50}}>
                 <Header style={styles.header}>
                 <Left>
                 <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
