@@ -70,7 +70,7 @@ class RegisterForm extends Component {
                 const resetAction = StackActions.reset({
                   index: 1,
                   actions: [
-                    NavigationActions.navigate({ routeName: 'Login'}),
+                    NavigationActions.navigate({ routeName: 'AuthLogin'}),
                     NavigationActions.navigate({ routeName: 'Drawer'})
                   ]
                 })
