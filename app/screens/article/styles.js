@@ -4,8 +4,8 @@ const deviceHeight = Dimensions.get("window").height;
 
 export default {
   imageContainer: {
-    width:100, 
-    height:100,
+    width: 100,
+    height: 100,
     borderRadius: 5
   },
   logoContainer: {
@@ -28,19 +28,19 @@ export default {
   menuText: {
     marginTop: 10,
     fontSize: 14,
-    width:110
+    width: 110
   },
   title: {
-    color: '#000'
+    color: "#000"
   },
   header: {
     backgroundColor: "#ffcd22"
   },
-  container : {
+  container: {
     marginTop: 10,
-    flexDirection: 'row',
+    flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: 'space-around',
+    justifyContent: "space-around"
   },
   articleTitle: {
     marginTop: 10,

@@ -15,7 +15,7 @@ import {
   Text,
   Form,
   Input,
-  Label,
+  Label
 } from "native-base";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
@@ -34,7 +34,7 @@ class Register extends Component {
               transparent
               onPress={() => this.props.navigation.openDrawer()}
             >
-              <Icon name="menu" style={{color:"black"}}/>
+              <Icon name="menu" style={{ color: "black" }} />
             </Button>
           </Left>
           <Body>

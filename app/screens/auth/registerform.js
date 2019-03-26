@@ -75,11 +75,11 @@ class RegisterForm extends Component {
                   ]
                 })
               this.props.data.dispatch(resetAction)
-              alert('Register successful. You can login now');
+              Alert.alert('Register successful. You can login now');
           }else{  
             // this.setState({ spinner: false });
             setTimeout(() => {
-              alert(response.error);
+              Alert.alert(response.error);
             }, 100);       
           }
         }

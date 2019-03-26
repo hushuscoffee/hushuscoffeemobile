@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image,AsyncStorage,TouchableOpacity,FlatList } from "react-native";
+import { Image, AsyncStorage, Alert, TouchableOpacity, FlatList } from "react-native";
 import {
   Content,
   Text,
@@ -13,7 +13,7 @@ import {
   View
 } from "native-base";
 import styles from "./style";
-import { NavigationActions, StackActions } from 'react-navigation';
+import { NavigationActions, StackActions } from "react-navigation";
 
 const drawerCover = require("../../../assets/drawer-cover.png");
 const datas_non_auth = [
@@ -79,6 +79,11 @@ const datas_auth = [
     name: "People",
     route: "People",
     icon: "people"
+  },
+  {
+    name: "My Notes",
+    route: "Notes",
+    icon: "paper"
   }
 ];
 
@@ -94,40 +99,41 @@ class SideBar extends Component {
   }
 
   async getIdUserHushus() {
-      await AsyncStorage.getItem('idUserHushus').then(value =>
+    await AsyncStorage.getItem("idUserHushus").then(value =>
       this.setState({ idUserHushus: value })
     );
     console.log(this.state.idUserHushus);
     console.log("coba");
-    if(this.state.idUserHushus != null){
-      const profile = await fetch('http://hushuscoffee.com/api/people/'+ this.state.idUserHushus);
+    if (this.state.idUserHushus != null) {
+      const profile = await fetch(
+        "http://hushuscoffee.com/api/people/" + this.state.idUserHushus
+      );
       const json = await profile.json();
       this.setState({
         fullname: json.data[0].fullname
       });
     }
-  };
-
+  }
 
   _handleLogOut = () => {
-    AsyncStorage.removeItem('idUserHushus');
+    AsyncStorage.removeItem("idUserHushus");
     const resetAction = StackActions.reset({
       index: 1,
       actions: [
-        NavigationActions.navigate({ routeName: 'Home'}),
-        NavigationActions.navigate({ routeName: 'Drawer'})
+        NavigationActions.navigate({ routeName: "Home" }),
+        NavigationActions.navigate({ routeName: "Drawer" })
       ]
-    })
-    this.props.navigation.dispatch(resetAction)
-    alert('You have been logged out.');
-  }
+    });
+    this.props.navigation.dispatch(resetAction);
+    Alert.alert("You have been logged out.");
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.getIdUserHushus();
   }
 
   render() {
-    if(this.state.idUserHushus != null){
+    if (this.state.idUserHushus != null) {
       return (
         <Container>
           <Content
@@ -136,13 +142,13 @@ class SideBar extends Component {
           >
             <Image source={drawerCover} style={styles.drawerCover} />
             <Left>
-                    <Text style={{ color: "#000", fontSize: 20}}>
-            {`${this.state.fullname}`}
-            </Text>
-                  </Left>
+              <Text style={{ color: "#000", fontSize: 20 }}>
+                {`${this.state.fullname}`}
+              </Text>
+            </Left>
             <List
               dataArray={datas_auth}
-              renderRow={data =>
+              renderRow={data => (
                 <ListItem
                   button
                   noBorder
@@ -154,11 +160,9 @@ class SideBar extends Component {
                       name={data.icon}
                       style={{ color: "#777", fontSize: 26, width: 30 }}
                     />
-                    <Text style={styles.text}>
-                      {data.name}
-                    </Text>
+                    <Text style={styles.text}>{data.name}</Text>
                   </Left>
-                  {data.types &&
+                  {data.types && (
                     <Right style={{ flex: 1 }}>
                       <Badge
                         style={{
@@ -168,31 +172,31 @@ class SideBar extends Component {
                           backgroundColor: data.bg
                         }}
                       >
-                        <Text
-                          style={styles.badgeText}
-                        >{`${data.types} Types`}</Text>
+                        <Text style={styles.badgeText}>{`${
+                          data.types
+                        } Types`}</Text>
                       </Badge>
-                    </Right>}
-                </ListItem>}
+                    </Right>
+                  )}
+                </ListItem>
+              )}
             />
             <List>
-              <ListItem onPress={ () => this._handleLogOut() }>
-              <Left>
-                    <Icon
-                      active
-                      name='log-out'
-                      style={{ color: "#777", fontSize: 26, width: 30 }}
-                    />
-                    <Text style={styles.text}>
-                      Logout
-                    </Text>
-                  </Left>
+              <ListItem onPress={() => this._handleLogOut()}>
+                <Left>
+                  <Icon
+                    active
+                    name="log-out"
+                    style={{ color: "#777", fontSize: 26, width: 30 }}
+                  />
+                  <Text style={styles.text}>Logout</Text>
+                </Left>
               </ListItem>
-            </List>          
+            </List>
           </Content>
         </Container>
       );
-    }else{
+    } else {
       return (
         <Container>
           <Content
@@ -200,10 +204,10 @@ class SideBar extends Component {
             style={{ flex: 1, backgroundColor: "#fff", top: -1 }}
           >
             <Image source={drawerCover} style={styles.drawerCover} />
-          {/* <Text> Non Auth {this.state.idUserHushus} </Text> */}
+            {/* <Text> Non Auth {this.state.idUserHushus} </Text> */}
             <List
               dataArray={datas_non_auth}
-              renderRow={data =>
+              renderRow={data => (
                 <ListItem
                   button
                   noBorder
@@ -215,11 +219,9 @@ class SideBar extends Component {
                       name={data.icon}
                       style={{ color: "#777", fontSize: 26, width: 30 }}
                     />
-                    <Text style={styles.text}>
-                      {data.name}
-                    </Text>
+                    <Text style={styles.text}>{data.name}</Text>
                   </Left>
-                  {data.types &&
+                  {data.types && (
                     <Right style={{ flex: 1 }}>
                       <Badge
                         style={{
@@ -229,18 +231,19 @@ class SideBar extends Component {
                           backgroundColor: data.bg
                         }}
                       >
-                        <Text
-                          style={styles.badgeText}
-                        >{`${data.types} Types`}</Text>
+                        <Text style={styles.badgeText}>{`${
+                          data.types
+                        } Types`}</Text>
                       </Badge>
-                    </Right>}
-                </ListItem>}
+                    </Right>
+                  )}
+                </ListItem>
+              )}
             />
           </Content>
         </Container>
       );
     }
-    
   }
 }
 
