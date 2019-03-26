@@ -101,7 +101,6 @@ class People extends Component {
           <View>
               <FlatList
                   data={this.state.people}
-                  horizontal={true}
                   keyExtractor={(dataPeople, i) => i.toString()}
                   renderItem={({item}) =>
                     <Grid style={{padding: 15}}>
@@ -109,40 +108,19 @@ class People extends Component {
                             >
                             <Col style={{flexDirection: "column"}}>
                               <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}>{`${item.fullname}`}</Text>
+                            </Col>
+                            <Col>
+                              <Text style={styles.menuText}>
+                                {`${item.fullname}`}
+                              </Text>
+                              <Text style={styles.menuText}>
+                                Member since : {`${item.created_at}`}
+                              </Text>
                             </Col>
                         </Row>
                     </Grid>
                   }
               />
-          </View>
-        </Card>
-
-        <Card style={{backgroundColor:'#e5e7ea', padding:5, marginTop:25}}>
-        <Row style={styles.title}>
-            <Text style={{fontSize:24}}>Newest People</Text>
-            <Right><Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }}>View All</Text></Right>
-          </Row>
-
-          <View>
-            <FlatList
-                data={this.state.people}
-                horizontal={true}
-                keyExtractor={(dataPeople, i) => i.toString()}
-                renderItem={({item}) =>
-                  <Grid style={{padding: 15}}>
-                      <Row style={{justifyContent: "center", flexDirection: "row"}}
-                          onPress={ ()=> 
-                              this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
-                          }>
-                          <Col style={{flexDirection: "column"}}>
-                            <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
-                            <Text style={styles.menuText}>{`${item.fullname}`}</Text>
-                          </Col>
-                      </Row>
-                  </Grid>
-                }
-            />
           </View>
         </Card>
         </Content>
