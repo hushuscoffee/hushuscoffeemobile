@@ -23,6 +23,9 @@ import Article from "./screens/article/";
 import People from "./screens/people/";
 import SideBar from "./screens/sidebar";
 import Notes from "./screens/notes";
+import MyArticle from "./screens/notes/my-article";
+import MyBrewing from "./screens/notes/my-brewing";
+import MyRecipe from "./screens/notes/my-recipe";
 
 const Drawer = createDrawerNavigator(
   {
@@ -56,7 +59,10 @@ const AppNavigator = createStackNavigator(
     AllNews: { screen: AllNews },
     AllTips: { screen: AllTips },
     AuthLogin: { screen: AuthLogin },
-    AuthRegister: { screen: AuthRegister }
+    AuthRegister: { screen: AuthRegister },
+    MyArticle: { screen: MyArticle },
+    MyBrewing: { screen: MyBrewing },
+    MyRecipe: { screen: MyRecipe }
   },
   {
     initialRouteName: "Drawer",

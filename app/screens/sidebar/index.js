@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, AsyncStorage, TouchableOpacity, FlatList } from "react-native";
+import { Image, AsyncStorage, Alert, TouchableOpacity, FlatList } from "react-native";
 import {
   Content,
   Text,
@@ -81,7 +81,7 @@ const datas_auth = [
     icon: "people"
   },
   {
-    name: "Notes",
+    name: "My Notes",
     route: "Notes",
     icon: "paper"
   }
@@ -125,7 +125,7 @@ class SideBar extends Component {
       ]
     });
     this.props.navigation.dispatch(resetAction);
-    alert("You have been logged out.");
+    Alert.alert("You have been logged out.");
   };
 
   componentDidMount() {
