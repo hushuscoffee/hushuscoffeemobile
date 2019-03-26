@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Image, Dimensions } from "react-native";
+import {
+  Image,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList
+} from "react-native";
 
 import {
   Container,
@@ -11,19 +17,51 @@ import {
   Left,
   Right,
   Body,
-  H3,
-  H2,
+  Item,
   Text,
   Card,
-  View
+  CardItem,
+  Thumbnail,
+  Toast,
+  View,
+  Linking
 } from "native-base";
 import { Grid, Row, Col } from "react-native-easy-grid";
-
 import styles from "./styles";
-const deviceWidth = Dimensions.get("window").width;
+
+const URI = "http://hushuscoffee.com/";
 
 class DetailPeople extends Component {
+
+  state = {
+    people: [],
+    achievement: [],
+    experience: [],
+    skill: [],
+    language: []
+  };
+
+  fetchData = async () => {
+    const { params } = this.props.navigation.state;
+    const response = await fetch(URI + "api/people/" + params.id);
+    const json = await response.json();
+    this.setState({
+      people: json.profile,
+      achievement: json.achievement,
+      experience: json.experience,
+      skill: json.skill,
+      language: json.language,
+    });
+
+    console.log(this.state.achievement);
+  };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
   render() {
+
     return (
       <Container>
         <Header style={styles.header}>
@@ -46,212 +84,181 @@ class DetailPeople extends Component {
         </Header>
 
         <Content padder>
-          <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
-            <Grid>
-              <Col style={styles.colImage}>
-                {/* <Image source={people} style={styles.imageDetail} /> */}
-                <H2 style={{ marginTop: 15, fontWeight: "bold" }}>
-                  Amendo Mariesto Sitinjak
-                </H2>
-                <H3 style={styles.mt}>Writer and Traveler</H3>
-                <Text style={styles.mt}>Indonesia, Laguboti</Text>
-                <Text style={styles.mt}>
-                  +62 821-6587-7722 - amendo_s@del.ac.id
-                </Text>
-                <Text style={styles.mt}>https://medium.com/@amendo_s </Text>
-                <Text>https://www.linkedin.com/amendo-sitinjak</Text>
-              </Col>
-            </Grid>
-          </Card>
 
-          <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
-            <Grid>
-              <Col>
-                <Text style={{ textAlign: "center" }}>
-                  I grew up in an entrepreneurial family and passionate with
-                  everything about coffee, cause i see that enjoying coffee is
-                  the same as enjoying art. the taste, the aroma, and the latte
-                  art are truly a divine combination!
-                </Text>
-              </Col>
-            </Grid>
-          </Card>
+          <View>
+            <Image source={{ uri: `http://hushuscoffee.com/images/avatar/${this.state.people.photo}` }} style={{ flex: 1, alignSelf: "center", width: 150, height: 150, borderRadius: 75, borderWidth: 1 }} />
 
-          <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
-            <Grid>
-              <Col>
-                <H3 style={{ textAlign: "center" }}>Achievements</H3>
-              </Col>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>
-                  U.S.COFFEECHAMPS– PRELIMINARIES
-                </Text>
-              </Row>
-              <Row>
-                <Text>
-                  http: //www.uscoffeechampionships.org/preliminaries/ Specialty
-                  Coffee Association
-                </Text>
-              </Row>
-              <Row>
-                <Text>January 2018</Text>
-              </Row>
-              <Row>
-                <Text>I was the 1 st winner</Text>
-              </Row>
+            <FlatList
+              data={this.state.achievement}
+              keyExtractor={(dataPeople, i) => i.toString()}
+              renderItem={({ item }) => (
+                <View>
+                  <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
+                    <Grid>
+                      <Col style={styles.colImage}>
+                        {/* <Image source={people} style={styles.imageDetail} /> */}
+                        <Text style={{ marginTop: 15, fontWeight: "bold" }}>
+                          {this.state.people.fullname}
+                        </Text>
+                        <Text style={styles.mt}>
+                          {this.state.people.profession}
+                        </Text>
+                        <Text style={styles.mt}>
+                          {this.state.people.address}
+                        </Text>
+                        <Text style={styles.mt}>
+                          {this.state.people.phone}
+                        </Text>
+                        <Text style={styles.mt}>
+                          {this.state.people.portfoliolinks}
+                        </Text>
+                      </Col>
+                    </Grid>
+                  </Card>
 
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>
-                  INDONESIA BARISTA CHAMPIONSHIP 2018
-                </Text>
-              </Row>
-              <Row>
-                <Text>
-                  http:
-                  //indonesiacoffeeevents.com/hasil-kompetisi/ibc2018-elimination-result/
-                  Barista Guild Indonesia
-                </Text>
-              </Row>
-              <Row>
-                <Text>January 2018</Text>
-              </Row>
-              <Row>
-                <Text>2nd East</Text>
-              </Row>
-              <View style={styles.line} />
-            </Grid>
-          </Card>
+                  <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
+                    <Grid>
+                      <Col>
+                        <Text style={{ fontWeight: "bold" }}>
+                          Description :
+                        </Text>
+                        <Text>
+                          {this.state.people.aboutme}
+                        </Text>
+                      </Col>
+                    </Grid>
+                  </Card>
 
-          <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
-            <Grid>
-              <Col>
-                <H3 style={{ textAlign: "center" }}>Experience</H3>
-              </Col>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Coordinator Barista</Text>
-              </Row>
-              <Row>
-                <Text>Warunk Upnormal, Greater Jakarta Area, Indonesia</Text>
-              </Row>
-              <Row>
-                <Text>https: //www.warunkupnormal.com/</Text>
-              </Row>
-              <Row>
-                <Text>April 2017 - June 2017</Text>
-              </Row>
-              <Row>
-                <Text>
-                  Memastikan bahwa produk yang akan disajikan selalu higienis,
-                  dalam keadaan baik dan menarik serta melayani pelanggan dengan
-                  ramah, sopan & berbicara dengan jelas
-                </Text>
-              </Row>
+                  <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
+                    <Grid>
+                      <Col>
+                        <Text style={{ textAlign: "center" }}>Achievements</Text>
+                      </Col>
+                      <View style={styles.line} />
+                      <Row style={styles.mt}>
+                        <Text style={{ fontWeight: "bold" }}>
+                          {item.title} ({item.month} {item.year})
+                        </Text>
+                      </Row>
+                      <Row>
+                        <Text>
+                          ({item.link})
+                        </Text>
+                      </Row>
+                      <Col>
+                        <Text style={{ fontWeight: "bold" }}>
+                          Description :
+                        </Text>
+                        <Text>
+                          {item.description}
+                        </Text>
+                      </Col>
+                      <View style={styles.line} />
+                    </Grid>
+                  </Card>
+                </View>
+              )}
+            />
 
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Barista</Text>
-              </Row>
-              <Row>
-                <Text>
-                  PappaRich Group, Selayang Mall, Kuala Lumpur, Malaysia
-                </Text>
-              </Row>
-              <Row>
-                <Text>http: //www.papparich.com.my</Text>
-              </Row>
-              <Row>
-                <Text>July 2017 - August 2017</Text>
-              </Row>
-              <Row>
-                <Text>Menyediakan produk ke pelanggan dalam keadaan baik</Text>
-              </Row>
-              <View style={styles.line} />
-            </Grid>
-          </Card>
+            <FlatList
+              data={this.state.experience}
+              keyExtractor={(dataPeople, i) => i.toString()}
+              renderItem={({ item }) => (
+                <View>
+                  <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
+                    <Grid>
+                      <Col>
+                        <Text style={{ textAlign: "center" }}>Achievements</Text>
+                      </Col>
+                      <View style={styles.line} />
+                      <Row style={styles.mt}>
+                        <Text style={{ fontWeight: "bold" }}>
+                          {item.title} ({item.monthf} {item.yearf})
+                        </Text>
+                      </Row>
+                      <Row>
+                        <Text>
+                          ({item.link})
+                        </Text>
+                      </Row>
+                      <Col>
+                        <Text style={{ fontWeight: "bold" }}>
+                          Description :
+                        </Text>
+                        <Text>
+                          {item.description}
+                        </Text>
+                      </Col>
+                      <View style={styles.line} />
+                    </Grid>
+                  </Card>
+                </View>
+              )}
+            />
 
-          <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
-            <Grid>
-              <Col>
-                <H3 style={{ textAlign: "center" }}>Skill</H3>
-              </Col>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Testing</Text>
-              </Row>
-              <Row>
-                <Text>Intermediate proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Programming</Text>
-              </Row>
-              <Row>
-                <Text>Intermediate proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Deploy</Text>
-              </Row>
-              <Row>
-                <Text>Advanced proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Analysis</Text>
-              </Row>
-              <Row>
-                <Text>Advanced proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Web Development</Text>
-              </Row>
-              <Row>
-                <Text>Professional proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-            </Grid>
-          </Card>
+            <View>
+              <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
+                <Grid>
+                  <Col>
+                    <Text style={{ textAlign: "center", fontWeight: "bold" }}>Skill</Text>
+                  </Col>
+                  <View style={styles.line} />
+                  <Row style={styles.mt}>
+                    <FlatList
+                      data={this.state.skill}
+                      keyExtractor={(dataPeople, i) => i.toString()}
+                      renderItem={({ item }) => (
+                        <View>
+                          <Col style={{ alignItems: "center" }}>
+                            <Text>
+                              {item.skill}
+                            </Text>
+                            <Text>
+                              ({item.proficiency})
+                          </Text>
+                          </Col>
+                          <View style={styles.line} />
+                        </View>
+                      )}
+                    />
+                  </Row>
+                </Grid>
+              </Card>
+            </View>
 
-          <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
-            <Grid>
-              <Col>
-                <H3 style={{ textAlign: "center" }}>Languange</H3>
-              </Col>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>English</Text>
-              </Row>
-              <Row>
-                <Text>Full professional proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Indonesia</Text>
-              </Row>
-              <Row>
-                <Text>Native or bilingual proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Batak</Text>
-              </Row>
-              <Row>
-                <Text>Native or bilingual proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-              <Row style={styles.mt}>
-                <Text style={{ fontWeight: "bold" }}>Mandarin</Text>
-              </Row>
-              <Row>
-                <Text>Limited working proficiency</Text>
-              </Row>
-              <View style={styles.line} />
-            </Grid>
-          </Card>
+            <View>
+              <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
+                <Grid>
+                  <Col>
+                    <Text style={{ textAlign: "center", fontWeight: "bold" }}>Language</Text>
+                  </Col>
+                  <View style={styles.line} />
+                  <Row style={styles.mt}>
+                    <FlatList
+                      data={this.state.language}
+                      keyExtractor={(dataPeople, i) => i.toString()}
+                      renderItem={({ item }) => (
+                        <View>
+                          <Col style={{ alignItems: "center" }}>
+                            <Text >
+                              {item.language}
+                            </Text>
+                            <Text>
+                              ({item.proficiency})
+                            </Text>
+                          </Col>
+                          <View style={styles.line} />
+                        </View>
+                      )}
+                    />
+                  </Row>
+
+                </Grid>
+              </Card>
+            </View>
+          </View>
+
+
         </Content>
       </Container>
     );

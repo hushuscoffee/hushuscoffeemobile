@@ -47,66 +47,52 @@ class Recipes extends Component {
     this.fetchData();
   }
 
-  render() {
-    return (
-      <Container style={{ paddingBottom: 50 }}>
-        <Header style={styles.header}>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.openDrawer()}
-            >
-              <Icon name="menu" style={{ color: "black" }} />
+  render(){
+    return(
+        <Container style={{marginBottom: 80}}>
+            <Header style={styles.header}>
+            <Left>
+            <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
+                <Icon name="menu" style={{color:"black"}}/>
             </Button>
-          </Left>
-          <Body>
-            <Title style={styles.title}>All Recipes</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-              {/* <Icon name='search' style={{color:"black"}}/> */}
-            </Button>
-            <Button transparent>
-              {/* <Icon name='more' style={{color:"black"}}/> */}
-            </Button>
-          </Right>
-        </Header>
-
-        <View>
-          <FlatList
-            data={this.state.recipes}
-            keyExtractor={(dataRecipes, i) => i.toString()}
-            renderItem={({ item }) => (
-              <Grid style={{ padding: 15 }}>
-                <Row
-                  style={{ justifyContent: "center", flexDirection: "row" }}
-                  onPress={() =>
-                    this.props.navigation.navigate("DetailRecipe", {
-                      id: item.id
-                    })
-                  }
-                >
-                  <Col style={{ flexDirection: "column" }}>
-                    <Image
-                      source={{
-                        uri: `http://hushuscoffee.com/uploads/recipes/${
-                          item.image
-                        }`
-                      }}
-                      style={styles.imageContainer}
-                    />
-                  </Col>
-                  <Col style={{ flexDirection: "column", marginLeft: -150 }}>
-                    <Text>{`${item.title}`}</Text>
-                  </Col>
-                </Row>
-              </Grid>
-            )}
-          />
-        </View>
-      </Container>
-    );
-  }
+            </Left>
+            <Body>
+                <Title style={styles.title}>All Recipes</Title>
+            </Body>
+            <Right>
+                <Button transparent>
+                {/* <Icon name='search' style={{color:"black"}}/> */}
+                </Button>
+                <Button transparent>
+                {/* <Icon name='more' style={{color:"black"}}/> */}
+                </Button>
+            </Right>
+            </Header>
+        
+            <View>
+                <FlatList
+                    data={this.state.recipes}
+                    keyExtractor={(dataRecipes, i) => i.toString()}
+                    renderItem={({item}) => 
+                        <Grid style={{padding: 15}}>
+                            <Row style={{justifyContent: "center", flexDirection: "row"}}
+                                    onPress={ ()=> 
+                                        this.props.navigation.navigate("DetailRecipe", {id:item.id}) 
+                                    }>
+                                <Col style={{ flex: 0, flexDirection: "column", width: "35%" }}>
+                                    <Image source={{ uri : `http://hushuscoffee.com/uploads/recipes/${item.image}` }} style={styles.imageContainer} />
+                                </Col>
+                                <Col style={{ flex: 0, flexDirection: "column", width: "70%" }}>
+                                    <Text>{`${item.title}`}</Text>
+                                </Col>
+                            </Row>
+                        </Grid>
+                    }
+                />
+            </View>
+        </Container>
+    )
+}
 }
 
 export default Recipes;

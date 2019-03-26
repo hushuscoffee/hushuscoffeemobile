@@ -66,7 +66,8 @@ export default {
     borderRadius: 5
   },
   mt: {
-    marginTop: 10
+    marginTop: 10,
+    textAlign: "center"
   },
   line: {
     borderBottomColor: "gray",
