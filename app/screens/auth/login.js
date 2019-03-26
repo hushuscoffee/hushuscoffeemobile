@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LoginForm from './loginform';
+import LoginForm from "./loginform";
 import { Image, Dimensions, View } from "react-native";
 
 import {
@@ -12,8 +12,8 @@ import {
   Left,
   Right,
   Body,
-  Form, 
-  Item, 
+  Form,
+  Item,
   Input,
   Label,
   Text
@@ -32,7 +32,7 @@ class Login extends Component {
               transparent
               onPress={() => this.props.navigation.openDrawer()}
             >
-              <Icon name="menu" style={{color:"black"}}/>
+              <Icon name="menu" style={{ color: "black" }} />
             </Button>
           </Left>
           <Body>
@@ -47,7 +47,7 @@ class Login extends Component {
             </Button>
           </Right>
         </Header>
-        
+
         <LoginForm data={this.props.navigation} />
       </Container>
     );

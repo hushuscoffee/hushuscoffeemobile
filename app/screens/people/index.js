@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Image, Dimensions, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import {
+  Image,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList
+} from "react-native";
 
 import {
   Container,
@@ -24,26 +30,26 @@ import { Grid, Row, Col } from "react-native-easy-grid";
 import styles from "./styles";
 const deviceWidth = Dimensions.get("window").width;
 
-const URI = 'http://hushuscoffee.com/';
+const URI = "http://hushuscoffee.com/";
 
 class People extends Component {
   // eslint-disable-line
 
   state = {
-    people: []        
-  }
+    people: []
+  };
 
   fetchData = async () => {
-      const { params } = this.props.navigation.state;
-      const response = await fetch(URI + 'api/people');
-      const json = await response.json();
-      this.setState({
-          people: json.data
-      });
-  }
+    const { params } = this.props.navigation.state;
+    const response = await fetch(URI + "api/people");
+    const json = await response.json();
+    this.setState({
+      people: json.data
+    });
+  };
 
-  componentDidMount(){
-      this.fetchData();
+  componentDidMount() {
+    this.fetchData();
   }
 
   render() {
@@ -51,8 +57,11 @@ class People extends Component {
       <Container>
         <Header style={styles.header}>
           <Left>
-            <Button transparent onPress={()=>this.props.navigation.openDrawer()}>
-              <Icon name="menu" style={{color:"black"}}/>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.openDrawer()}
+            >
+              <Icon name="menu" style={{ color: "black" }} />
             </Button>
           </Left>
           <Body>
@@ -69,59 +78,104 @@ class People extends Component {
         </Header>
 
         <Content padder>
-        <Card style={{backgroundColor:'#e5e7ea', padding:5}}>
-        <Row style={styles.title}>
-            <Text style={{fontSize:24}}>Trending People</Text>
-            <Right><Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }}>View All</Text></Right>
-          </Row>
+          <Card style={{ backgroundColor: "#e5e7ea", padding: 5 }}>
+            <Row style={styles.title}>
+              <Text style={{ fontSize: 24 }}>Trending People</Text>
+              <Right>
+                <Text
+                  style={{
+                    alignSelf: "flex-end",
+                    marginRight: 10,
+                    color: "blue"
+                  }}
+                >
+                  View All
+                </Text>
+              </Right>
+            </Row>
 
-          <View>
+            <View>
               <FlatList
-                  data={this.state.people}
-                  horizontal={true}
-                  keyExtractor={(dataPeople, i) => i.toString()}
-                  renderItem={({item}) =>
-                    <Grid style={{padding: 15}}>
-                        <Row style={{justifyContent: "center", flexDirection: "row"}}
-                            >
-                            <Col style={{flexDirection: "column"}}>
-                              <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
-                              <Text style={styles.menuText}>{`${item.fullname}`}</Text>
-                            </Col>
-                        </Row>
-                    </Grid>
-                  }
-              />
-          </View>
-        </Card>
-
-        <Card style={{backgroundColor:'#e5e7ea', padding:5, marginTop:25}}>
-        <Row style={styles.title}>
-            <Text style={{fontSize:24}}>Newest People</Text>
-            <Right><Text style={{ alignSelf:"flex-end", marginRight:10, color:"blue" }}>View All</Text></Right>
-          </Row>
-
-          <View>
-            <FlatList
                 data={this.state.people}
                 horizontal={true}
                 keyExtractor={(dataPeople, i) => i.toString()}
-                renderItem={({item}) =>
-                  <Grid style={{padding: 15}}>
-                      <Row style={{justifyContent: "center", flexDirection: "row"}}
-                          onPress={ ()=> 
-                              this.props.navigation.navigate("DetailBrewing", {id:item.id}) 
-                          }>
-                          <Col style={{flexDirection: "column"}}>
-                            <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
-                            <Text style={styles.menuText}>{`${item.fullname}`}</Text>
-                          </Col>
-                      </Row>
+                renderItem={({ item }) => (
+                  <Grid style={{ padding: 15 }}>
+                    <Row
+                      style={{ justifyContent: "center", flexDirection: "row" }}
+                    >
+                      <Col style={{ flexDirection: "column" }}>
+                        <Image
+                          source={{
+                            uri: `http://hushuscoffee.com/images/avatar/${
+                              item.photo
+                            }`
+                          }}
+                          style={styles.imageContainer}
+                        />
+                        <Text style={styles.menuText}>{`${
+                          item.fullname
+                        }`}</Text>
+                      </Col>
+                    </Row>
                   </Grid>
-                }
-            />
-          </View>
-        </Card>
+                )}
+              />
+            </View>
+          </Card>
+
+          <Card
+            style={{ backgroundColor: "#e5e7ea", padding: 5, marginTop: 25 }}
+          >
+            <Row style={styles.title}>
+              <Text style={{ fontSize: 24 }}>Newest People</Text>
+              <Right>
+                <Text
+                  style={{
+                    alignSelf: "flex-end",
+                    marginRight: 10,
+                    color: "blue"
+                  }}
+                >
+                  View All
+                </Text>
+              </Right>
+            </Row>
+
+            <View>
+              <FlatList
+                data={this.state.people}
+                horizontal={true}
+                keyExtractor={(dataPeople, i) => i.toString()}
+                renderItem={({ item }) => (
+                  <Grid style={{ padding: 15 }}>
+                    <Row
+                      style={{ justifyContent: "center", flexDirection: "row" }}
+                      onPress={() =>
+                        this.props.navigation.navigate("DetailBrewing", {
+                          id: item.id
+                        })
+                      }
+                    >
+                      <Col style={{ flexDirection: "column" }}>
+                        <Image
+                          source={{
+                            uri: `http://hushuscoffee.com/images/avatar/${
+                              item.photo
+                            }`
+                          }}
+                          style={styles.imageContainer}
+                        />
+                        <Text style={styles.menuText}>{`${
+                          item.fullname
+                        }`}</Text>
+                      </Col>
+                    </Row>
+                  </Grid>
+                )}
+              />
+            </View>
+          </Card>
         </Content>
       </Container>
     );

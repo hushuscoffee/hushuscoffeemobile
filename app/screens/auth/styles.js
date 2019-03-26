@@ -26,7 +26,7 @@ export default {
     marginTop: 5
   },
   title: {
-    color: "#000",
+    color: "#000"
   },
   header: {
     backgroundColor: "#ffcd22"
@@ -34,9 +34,9 @@ export default {
   mb: {
     marginBottom: 15
   },
-  iconRow:{
-    backgroundColor: "#ffcd22", 
-    borderRadius: 5, 
+  iconRow: {
+    backgroundColor: "#ffcd22",
+    borderRadius: 5,
     padding: 10
   }
 };

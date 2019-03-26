@@ -1,6 +1,10 @@
 import React from "react";
 import { Root } from "native-base";
-import { createAppContainer, createStackNavigator, createDrawerNavigator } from "react-navigation";
+import {
+  createAppContainer,
+  createStackNavigator,
+  createDrawerNavigator
+} from "react-navigation";
 
 import Home from "./screens/home";
 import AuthLogin from "./screens/auth/login";
@@ -18,6 +22,7 @@ import BrewingMethods from "./screens/brewing-methods/";
 import Article from "./screens/article/";
 import People from "./screens/people/";
 import SideBar from "./screens/sidebar";
+import Notes from "./screens/notes";
 
 const Drawer = createDrawerNavigator(
   {
@@ -27,7 +32,8 @@ const Drawer = createDrawerNavigator(
     People: { screen: People },
     AuthLogin: { screen: AuthLogin },
     AuthRegister: { screen: AuthRegister },
-    Article: { screen: Article }
+    Article: { screen: Article }.screen,
+    Notes: { screen: Notes }
   },
   {
     initialRouteName: "Home",
@@ -60,8 +66,8 @@ const AppNavigator = createStackNavigator(
 
 const AppContainer = createAppContainer(AppNavigator);
 
-export default () =>
+export default () => (
   <Root>
     <AppContainer />
-  </Root>;
-
+  </Root>
+);

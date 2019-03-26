@@ -6,8 +6,8 @@ const deviceHeight = Dimensions.get("window").height;
 
 export default {
   imageContainer: {
-    width:100, 
-    height:100,
+    width: 100,
+    height: 100,
     borderRadius: 5
   },
   logoContainer: {
@@ -36,16 +36,16 @@ export default {
     color: black
   },
   title: {
-    color: '#000'
+    color: "#000"
   },
   header: {
     backgroundColor: "#ffcd22"
   },
-  container : {
+  container: {
     marginTop: 10,
-    flexDirection: 'row',
+    flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: 'space-around'
+    justifyContent: "space-around"
   },
   articleTitle: {
     marginTop: 10,
@@ -55,13 +55,13 @@ export default {
     marginLeft: 0
   },
   gridStyle: {
-    width: '100%'
+    width: "100%"
   },
   cardStyle: {
     flex: 1,
-    width: '33%',
+    width: "33%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   col: {
     flex: 1,
