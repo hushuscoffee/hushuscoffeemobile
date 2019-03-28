@@ -30,7 +30,7 @@ import { Grid, Row, Col } from "react-native-easy-grid";
 import HTMLView from "react-native-htmlview";
 import { bold } from "ansi-colors";
 
-const URI = "http://hushuscoffee.com/";
+const URI = "http://10.0.2.2:8000/";
 
 class DetailBrewing extends Component {
   // eslint-disable-line
@@ -126,7 +126,7 @@ class DetailBrewing extends Component {
         <View key={index}>
           <Image
             source={{
-              uri: `http://hushuscoffee.com/uploads/brewings/steps/${item}`
+              uri: `http://10.0.2.2:8000/uploads/brewings/steps/${item}`
             }}
             style={styles.imageContainer}
           />
@@ -190,7 +190,7 @@ class DetailBrewing extends Component {
                   <Col style={{ flexDirection: "column" }}>
                     <Image
                       source={{
-                        uri: `http://hushuscoffee.com/uploads/brewings/${
+                        uri: `http://10.0.2.2:8000/uploads/brewings/${
                           item.image
                         }`
                       }}
@@ -268,7 +268,7 @@ class DetailBrewing extends Component {
                   </Text>
                   <Image
                     source={{
-                      uri: `http://hushuscoffee.com/uploads/brewings/steps/${
+                      uri: `http://10.0.2.2:8000/uploads/brewings/steps/${
                         item.image
                       }`
                     }}

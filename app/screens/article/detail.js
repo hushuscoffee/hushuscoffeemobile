@@ -29,7 +29,7 @@ import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import HTMLView from "react-native-htmlview";
 
-const URI = "http://hushuscoffee.com/";
+const URI = "http://10.0.2.2:8000/";
 
 class DetailArticle extends Component {
   // eslint-disable-line
@@ -107,7 +107,7 @@ class DetailArticle extends Component {
                   <Col style={{ flexDirection: "column" }}>
                     <Image
                       source={{
-                        uri: `http://hushuscoffee.com/uploads/articles/${
+                        uri: `http://10.0.2.2:8000/uploads/articles/${
                           item.image
                         }`
                       }}

@@ -48,7 +48,7 @@ class LoginForm extends Component {
       loading: true
     });
 
-    fetch("http://hushuscoffee.com/api/login", {
+    fetch("http://10.0.2.2:8000/api/login", {
       method: "POST",
       headers: {
         Accept: "application/json",

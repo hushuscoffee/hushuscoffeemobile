@@ -27,7 +27,7 @@ import {
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
-const URI = "http://hushuscoffee.com/";
+const URI = "http://10.0.2.2:8000/";
 
 class Recipes extends Component {
   state = {
@@ -80,7 +80,7 @@ class Recipes extends Component {
                                         this.props.navigation.navigate("DetailRecipe", {id:item.id}) 
                                     }>
                                 <Col style={{ flex: 0, flexDirection: "column", width: "35%" }}>
-                                    <Image source={{ uri : `http://hushuscoffee.com/uploads/recipes/${item.image}` }} style={styles.imageContainer} />
+                                    <Image source={{ uri : `http://10.0.2.2:8000/uploads/recipes/${item.image}` }} style={styles.imageContainer} />
                                 </Col>
                                 <Col style={{ flex: 0, flexDirection: "column", width: "70%" }}>
                                     <Text>{`${item.title}`}</Text>

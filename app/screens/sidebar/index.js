@@ -106,11 +106,11 @@ class SideBar extends Component {
     console.log("coba");
     if (this.state.idUserHushus != null) {
       const profile = await fetch(
-        "http://hushuscoffee.com/api/people/" + this.state.idUserHushus
+        "http://10.0.2.2:8000/api/people/" + this.state.idUserHushus
       );
       const json = await profile.json();
       this.setState({
-        fullname: json.data[0].fullname
+        fullname: json.profile.fullname
       });
     }
   }

@@ -27,7 +27,7 @@ import {
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
-const URI = "http://hushuscoffee.com/";
+const URI = "http://10.0.2.2:8000/";
 
 class AllArticle extends Component {
   state = {
@@ -92,7 +92,7 @@ class AllArticle extends Component {
                   >
                     <Image
                       source={{
-                        uri: `http://hushuscoffee.com/uploads/articles/${
+                        uri: `http://10.0.2.2:8000/uploads/articles/${
                           item.image
                         }`
                       }}

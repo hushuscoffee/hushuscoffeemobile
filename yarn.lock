@@ -5017,6 +5017,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-background-upload@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-background-upload/-/react-native-background-upload-5.0.1.tgz#c4b3f153b9066f742df72d0f30e9c85779861acb"
+  integrity sha512-qaSq/gM4CXYAGG7PLZqCp1u84CHVKItC7noGB3jkSKkrVrs4D+hUz6fPk+LkJXTOvRXZHrrbtj9M/LxdvCzy2w==
+
 react-native-drawer@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"
@@ -5065,6 +5070,11 @@ react-native-htmlview@^0.13.0:
   dependencies:
     entities "^1.1.1"
     htmlparser2-without-node-native "^3.9.2"
+
+react-native-image-picker@^0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.28.0.tgz#e3f26df170ea932e9c0404624fbced2f59a300e3"
+  integrity sha512-lQfdOyC1mQ/pvfEaUGdoodO1A1clg9kf6YC1WdbWhA6XK+joBd9GQYf8SaCf6/7vM25U4ib+6ux4yvnrS1pOqQ==
 
 react-native-indicators@^0.13.0:
   version "0.13.0"

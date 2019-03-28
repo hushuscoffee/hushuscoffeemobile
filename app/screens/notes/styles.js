@@ -60,5 +60,33 @@ export default {
   },
   contentSpace: {
     marginLeft: 0
-  }
+  },
+  TouchableOpacityStyle: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 20,
+    borderRadius: 5,
+    marginBottom: 7,
+    backgroundColor: "#ffcd22"
+  },
+
+  button: {
+    width: 250,
+    height: 50,
+    backgroundColor: "#330066"
+  },
+
+  text: {
+    color: "white",
+    fontSize: 30,
+    textAlign: "center"
+  },
+
+  image: {
+    height:200,
+    marginTop: 30
+  },
+  TextStyle : {
+    textAlign:'center'
+},
 };

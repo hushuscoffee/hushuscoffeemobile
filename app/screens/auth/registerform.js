@@ -47,7 +47,7 @@ class RegisterForm extends Component {
       loading: true
     });
 
-    fetch('http://hushuscoffee.com/api/register', {
+    fetch('http://10.0.2.2:8000/api/register', {
      method: 'POST',
      headers: {
                   'Accept': 'application/json',

@@ -71,7 +71,7 @@ class Notes extends Component {
             </CardItem>
             <CardItem>
               <Left>
-                <Button iconLeft style={{ backgroundColor: "#ffcd22" }}>
+                <Button iconLeft style={{ backgroundColor: "#ffcd22" }} onPress={() => this.props.navigation.navigate("CreateArticle")}>
                   <Icon name="add" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>Add Article</Text>
                 </Button>

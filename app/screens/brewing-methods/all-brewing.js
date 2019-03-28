@@ -27,7 +27,7 @@ import {
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
-const URI = "http://hushuscoffee.com/";
+const URI = "http://10.0.2.2:8000/";
 
 class AllBrewings extends Component {
   state = {
@@ -89,7 +89,7 @@ class AllBrewings extends Component {
                   <Col style={{ flexDirection: "column" }}>
                     <Image
                       source={{
-                        uri: `http://hushuscoffee.com/uploads/brewings/${
+                        uri: `http://10.0.2.2:8000/uploads/brewings/${
                           item.image
                         }`
                       }}

@@ -24,7 +24,7 @@ const notes = require("../../../assets/notes.png");
 const people = require("../../../assets/people.png");
 const recipes = require("../../../assets/VietnameseCoffee.png");
 
-const URI = "http://hushuscoffee.com/";
+const URI = "http://10.0.2.2:8000/";
 
 class Home extends Component {
   state = {
@@ -197,7 +197,7 @@ class Home extends Component {
                       <Col style={{ flexDirection: "column" }}>
                         <Image
                           source={{
-                            uri: `http://hushuscoffee.com/uploads/articles/${
+                            uri: `http://10.0.2.2:8000/uploads/articles/${
                               item.image
                             }`
                           }}
@@ -243,7 +243,7 @@ class Home extends Component {
                       <Col style={{ flexDirection: "column" }}>
                         <Image
                           source={{
-                            uri: `http://hushuscoffee.com/images/avatar/${
+                            uri: `http://10.0.2.2:8000/images/avatar/${
                               item.photo
                             }`
                           }}
