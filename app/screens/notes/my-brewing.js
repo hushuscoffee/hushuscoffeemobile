@@ -54,7 +54,7 @@ class MyBrewing extends Component {
                 transparent
                 onPress={() => this.props.navigation.goBack()}
               >
-                <Icon name="navigate" style={{ color: "black" }} />
+                <Icon type="Ionicons" name="arrow-back" style={{ color: "black" }} />
               </Button>
             </Left>
             <Body>

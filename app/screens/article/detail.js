@@ -68,9 +68,9 @@ class DetailArticle extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.openDrawer()}
+              onPress={() => this.props.navigation.goBack()}
             >
-              <Icon name="menu" style={{ color: "black" }} />
+              <Icon type="Ionicons" name="arrow-back" style={{ color: "black" }} />
             </Button>
           </Left>
           <Body>

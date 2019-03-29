@@ -153,7 +153,7 @@ class DetailBrewing extends Component {
         <Header style={styles.header}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="navigate" style={{ color: "black" }} />
+              <Icon type="Ionicons" name="arrow-back" style={{ color: "black" }} />
             </Button>
           </Left>
           <Body>

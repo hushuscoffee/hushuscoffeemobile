@@ -224,6 +224,7 @@ class Home extends Component {
                     marginRight: 10,
                     color: "blue"
                   }}
+                  onPress={() => this.props.navigation.navigate("People")}
                 >
                   View All
                 </Text>
@@ -239,6 +240,11 @@ class Home extends Component {
                   <Grid style={{ padding: 15 }}>
                     <Row
                       style={{ justifyContent: "center", flexDirection: "row" }}
+                      onPress={() =>
+                        this.props.navigation.navigate("DetailPeople", {
+                          id: item.id
+                        })
+                      }
                     >
                       <Col style={{ flexDirection: "column" }}>
                         <Image

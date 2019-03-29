@@ -79,21 +79,6 @@ class People extends Component {
 
         <Content padder>
           <Card style={{ backgroundColor: "#e5e7ea", padding: 5 }}>
-            <Row style={styles.title}>
-              <Text style={{ fontSize: 24 }}>Trending People</Text>
-              <Right>
-                <Text
-                  style={{
-                    alignSelf: "flex-end",
-                    marginRight: 10,
-                    color: "blue"
-                  }}
-                >
-                  View All
-                </Text>
-              </Right>
-            </Row>
-
             <View>
               <FlatList
                   data={this.state.people}

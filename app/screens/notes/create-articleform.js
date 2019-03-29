@@ -75,22 +75,14 @@ class CreateArticleForm extends Component {
         } else {
           source = { uri: response.uri.replace("file://", ""), isStatic: true };
         }
-        console.log("berhasil");
         this.setState({
           file: source
         });
-        console.log(source);
       }
     });
   }
 
   handleClick(navigate) {
-    console.log(this.state.title);
-    console.log(this.state.description);
-    console.log(this.state.shared);
-    console.log(this.state.category);
-    console.log(this.state.file);
-    console.log(this.state.idUserHushus);
     const data = new FormData();
     data.append("title", this.state.title);
     data.append("description", this.state.description);
@@ -98,12 +90,10 @@ class CreateArticleForm extends Component {
     data.append("category", this.state.category);
     data.append("user", this.state.idUserHushus);
     if (this.state.file != null) {
-      const uriPart = this.state.file.uri.split(".");
-      const fileExtension = uriPart[uriPart.length - 1];
-      data.append("file", {
+      data.append('file', {
         uri: this.state.file.uri,
-        type: `image/${fileExtension}`, // or photo.type
-        name: `photo.${fileExtension}`
+        type: 'image/jpeg',
+        name: 'testPhotoName'
       });
     } else {
       data.append("file", this.state.file);
@@ -117,15 +107,6 @@ class CreateArticleForm extends Component {
       headers: {
         "Content-Type": "multipart/form-data"
       },
-
-      // body: JSON.stringify({
-      //   title: this.state.title,
-      //   category: this.state.category,
-      //   description: this.state.description,
-      //   shared: this.state.shared,
-      //   file: this.state.file,
-      //   user: this.state.idUserHushus
-      // })
       body: data
     })
       .then(response => response.json())
@@ -135,7 +116,6 @@ class CreateArticleForm extends Component {
             loading: false
           },
           async () => {
-            console.log("berhasil2");
             if (response.message != "error") {
               const resetAction = StackActions.reset({
                 index: 1,

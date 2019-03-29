@@ -69,7 +69,13 @@ export default {
     marginBottom: 7,
     backgroundColor: "#ffcd22"
   },
-
+  new:{
+    
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   button: {
     width: 250,
     height: 50,
@@ -83,10 +89,52 @@ export default {
   },
 
   image: {
-    height:200,
+    height: 200,
     marginTop: 30
   },
-  TextStyle : {
-    textAlign:'center'
-},
+  TextStyle: {
+    textAlign: "center"
+  },
+  singleItemView: {
+    backgroundColor: "#FF6F00",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    paddingVertical: 16,
+    paddingLeft: 16,
+    margin: 5,
+    borderRadius: 8
+  },
+
+  singleItemText: {
+    color: "#fff",
+    fontSize: 23,
+    paddingRight: 18
+  },
+  FloatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 50,
+    height: 50
+  },
+
+  deleteButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 18,
+    padding: 7,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  removeIcon: {
+    width: "100%",
+    fontSize: 40
+  },
+  contain: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: (Platform.OS == 'ios') ? 20 : 0,
+    width: "100%",
+    // flexDirection: "row",
+    // justifyContent: "space-around"
+  },
 };
