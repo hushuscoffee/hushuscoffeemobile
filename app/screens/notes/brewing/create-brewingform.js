@@ -160,7 +160,7 @@ class CreateBrewingForm extends Component {
       loading: true
     });
     console.log("berhasil1");
-    fetch("http://10.0.2.2:8000/api/article/create", {
+    fetch("http://hushuscoffee.com/api/article/create", {
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data"
@@ -211,6 +211,12 @@ class CreateBrewingForm extends Component {
       celcius: value
     });
   }
+  onValueChangeMaterialUnit(value) {
+    this.setState({
+      materialUnitArr: value
+    });
+  }
+
 
   async getIdUserHushus() {
     await AsyncStorage.getItem("idUserHushus").then(value =>
@@ -241,7 +247,7 @@ class CreateBrewingForm extends Component {
           </Item>
           <Item stackedLabel style={{ marginTop: 30 }}>
             <Label>Cover Image</Label>
-            {this.state.file === null ? (
+            {this.state.cover === null ? (
               <View
                 style={{
                   width: deviceWidth * 0.9
@@ -260,7 +266,7 @@ class CreateBrewingForm extends Component {
                   width: deviceWidth * 0.9
                 }}
               >
-                <Image style={styles.image} source={this.state.file} />
+                <Image style={styles.image} source={this.state.cover} />
                 <TouchableOpacity
                   style={styles.TouchableOpacityStyle}
                   onPress={this.selectPhoto.bind(this)}
@@ -309,22 +315,22 @@ class CreateBrewingForm extends Component {
                 />
               </Col>
               <Col size={2}>
-              <Item picker>
-              <Picker
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                style={{ width: undefined }}
-                placeholder="Time"
-                placeholderStyle={{ color: "#bfc6ea" }}
-                placeholderIconColor="#007aff"
-                selectedValue={this.state.second}
-                onValueChange={this.onValueChangeSecond.bind(this)}
-              >
-                <Picker.Item label="second" value="second" />
-                <Picker.Item label="minute" value="minute" />
-                <Picker.Item label="hour" value="hour" />
-              </Picker>
-            </Item>
+                <Item picker>
+                  <Picker
+                    mode="dropdown"
+                    iosIcon={<Icon name="arrow-down" />}
+                    style={{ width: undefined }}
+                    placeholder="Time"
+                    placeholderStyle={{ color: "#bfc6ea" }}
+                    placeholderIconColor="#007aff"
+                    selectedValue={this.state.second}
+                    onValueChange={this.onValueChangeSecond.bind(this)}
+                  >
+                    <Picker.Item label="second" value="second" />
+                    <Picker.Item label="minute" value="minute" />
+                    <Picker.Item label="hour" value="hour" />
+                  </Picker>
+                </Item>
               </Col>
             </Grid>
           </Item>
@@ -342,23 +348,23 @@ class CreateBrewingForm extends Component {
                 />
               </Col>
               <Col size={2}>
-              <Item picker>
-              <Picker
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                style={{ width: undefined }}
-                placeholder="Temperature"
-                placeholderStyle={{ color: "#bfc6ea" }}
-                placeholderIconColor="#007aff"
-                selectedValue={this.state.celcius}
-                onValueChange={this.onValueChangeTemperature.bind(this)}
-              >
-                <Picker.Item label="&deg;C" value="&deg;C" />
-                <Picker.Item label="&deg;F" value="&deg;F" />
-                <Picker.Item label="&deg;K" value="&deg;K" />
-                <Picker.Item label="&deg;R" value="&deg;R" />
-              </Picker>
-            </Item>
+                <Item picker>
+                  <Picker
+                    mode="dropdown"
+                    iosIcon={<Icon name="arrow-down" />}
+                    style={{ width: undefined }}
+                    placeholder="Temperature"
+                    placeholderStyle={{ color: "#bfc6ea" }}
+                    placeholderIconColor="#007aff"
+                    selectedValue={this.state.celcius}
+                    onValueChange={this.onValueChangeTemperature.bind(this)}
+                  >
+                    <Picker.Item label="&deg;C" value="&deg;C" />
+                    <Picker.Item label="&deg;F" value="&deg;F" />
+                    <Picker.Item label="&deg;K" value="&deg;K" />
+                    <Picker.Item label="&deg;R" value="&deg;R" />
+                  </Picker>
+                </Item>
               </Col>
             </Grid>
           </Item>
@@ -371,10 +377,21 @@ class CreateBrewingForm extends Component {
                   borderBottomWidth: 1,
                   width: deviceWidth * 0.9
                 }}
-                onChangeText={text => this.setState({ title: text })}
+                onChangeText={text => this.setState({ materialName: text })}
               />
               <Grid>
                 <Col size={3}>
+                <Input
+                style={{
+                  borderColor: "black",
+                  borderBottomWidth: 1,
+                  width: deviceWidth * 0.4
+                }}
+                onChangeText={text => this.setState({ materialAmount: text })}
+                placeholder="amount"
+              />
+                </Col>
+                <Col size={2}>
                   <Item picker>
                     <Picker
                       mode="dropdown"
@@ -383,15 +400,14 @@ class CreateBrewingForm extends Component {
                       placeholder="Amount"
                       placeholderStyle={{ color: "#bfc6ea" }}
                       placeholderIconColor="#007aff"
-                      selectedValue={this.state.shared}
-                      onValueChange={this.onValueChange3.bind(this)}
+                      selectedValue={this.state.materialUnitArr}
+                      onValueChange={this.onValueChangeMaterialUnit.bind(this)}
                     >
                       <Picker.Item label="gr" value="gr" />
                       <Picker.Item label="ml" value="ml" />
                     </Picker>
                   </Item>
                 </Col>
-                <Col size={2} />
                 <Col size={1}>
                   <TouchableOpacity
                     activeOpacity={0.8}
@@ -423,6 +439,10 @@ class CreateBrewingForm extends Component {
                         item={ele}
                         deleteItem={id => this.remove_Selected_Item(id)}
                         afterAnimationComplete={this.afterAnimationComplete}
+                        materialName ={this.state.materialName}
+                        materialAmount ={this.state.materialAmount}
+                        materialUnitArr ={this.state.materialUnitArr}
+                        onValueChangeMaterialUnit={this.onValueChangeMaterialUnit}
                       />
                     );
                   })}
@@ -452,7 +472,7 @@ class CreateBrewingForm extends Component {
         <Button
           block
           style={{ margin: 15, marginTop: 30, backgroundColor: "#ffcd22" }}
-          onPress={() => this.handleClick(navigate)}
+          
         >
           <Text style={{ color: "black" }}>SAVE</Text>
         </Button>

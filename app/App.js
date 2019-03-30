@@ -28,6 +28,7 @@ import MyBrewing from "./screens/notes/my-brewing";
 import MyRecipe from "./screens/notes/my-recipe";
 import CreateArticle from "./screens/notes/create-article";
 import CreateBrewing from "./screens/notes/brewing/create-brewing";
+import CreateRecipe from "./screens/notes/recipe/create-recipe";
 
 const Drawer = createDrawerNavigator(
   {
@@ -66,7 +67,8 @@ const AppNavigator = createStackNavigator(
     MyBrewing: { screen: MyBrewing },
     MyRecipe: { screen: MyRecipe },
     CreateArticle: {screen: CreateArticle },
-    CreateBrewing: {screen: CreateBrewing }
+    CreateBrewing: {screen: CreateBrewing },
+    CreateRecipe: {screen: CreateRecipe }
   },
   {
     initialRouteName: "Drawer",

@@ -92,7 +92,7 @@ class CreateArticleForm extends Component {
     if (this.state.file != null) {
       data.append('file', {
         uri: this.state.file.uri,
-        type: 'image/jpeg',
+        type: 'image/jpeg/jpg/png',
         name: 'testPhotoName'
       });
     } else {
@@ -102,7 +102,7 @@ class CreateArticleForm extends Component {
       loading: true
     });
     console.log("berhasil1");
-    fetch("http://10.0.2.2:8000/api/article/create", {
+    fetch("http://hushuscoffee.com/api/article/create", {
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data"
@@ -260,7 +260,7 @@ class CreateArticleForm extends Component {
         <Button
           block
           style={{ margin: 15, marginTop: 30, backgroundColor: "#ffcd22" }}
-          onPress={() => this.handleClick(navigate)}
+          // onPress={() => this.handleClick(navigate)}
         >
           <Text style={{ color: "black" }}>SAVE</Text>
         </Button>

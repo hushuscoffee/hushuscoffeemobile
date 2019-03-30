@@ -11,12 +11,14 @@ import {
   Right,
   Body,
   Text,
-  View
+  View,
+  Card,
+  CardItem
 } from "native-base";
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
-const URI = "http://10.0.2.2:8000/";
+const URI = "http://hushuscoffee.com/";
 
 class MyRecipe extends Component {
   state = {
@@ -54,7 +56,7 @@ class MyRecipe extends Component {
                 transparent
                 onPress={() => this.props.navigation.goBack()}
               >
-                <Icon name="navigate" style={{ color: "black" }} />
+                <Icon type="Ionicons" name="arrow-back" name="navigate" style={{ color: "black" }} />
               </Button>
             </Left>
             <Body>
@@ -88,7 +90,7 @@ class MyRecipe extends Component {
                     >
                       <Image
                         source={{
-                          uri: `http://10.0.2.2:8000/uploads/recipes/${
+                          uri: `http://hushuscoffee.com/uploads/recipes/${
                             item.image
                           }`
                         }}
@@ -116,7 +118,11 @@ class MyRecipe extends Component {
                 transparent
                 onPress={() => this.props.navigation.goBack()}
               >
-                <Icon type="Ionicons" name="arrow-back" style={{ color: "black" }} />
+                <Icon
+                  type="Ionicons"
+                  name="arrow-back"
+                  style={{ color: "black" }}
+                />
               </Button>
             </Left>
             <Body>
@@ -133,10 +139,13 @@ class MyRecipe extends Component {
           </Header>
 
           <Content>
-            <Text>
-              You haven't create any recipe yet. Please create one here
-            </Text>
-            <Text>{this.state.message}</Text>
+            <Card>
+              <CardItem>
+                <Body>
+                  <Text>You haven't create any recipe yet.</Text>
+                </Body>
+              </CardItem>
+            </Card>
           </Content>
         </Container>
       );

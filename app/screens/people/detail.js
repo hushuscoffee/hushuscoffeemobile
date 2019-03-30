@@ -29,7 +29,7 @@ import {
 import { Grid, Row, Col } from "react-native-easy-grid";
 import styles from "./styles";
 
-const URI = "http://10.0.2.2:8000/";
+const URI = "http://hushuscoffee.com/";
 
 class DetailPeople extends Component {
 
@@ -86,7 +86,7 @@ class DetailPeople extends Component {
         <Content padder>
 
           <View>
-            <Image source={{ uri: `http://10.0.2.2:8000/images/avatar/${this.state.people.photo}` }} style={{ flex: 1, alignSelf: "center", width: 150, height: 150, borderRadius: 75, borderWidth: 1 }} />
+            <Image source={{ uri: `http://hushuscoffee.com/images/avatar/${this.state.people.photo}` }} style={{ flex: 1, alignSelf: "center", width: 150, height: 150, borderRadius: 75, borderWidth: 1 }} />
             <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
                     <Grid>
                       <Col style={styles.colImage}>
