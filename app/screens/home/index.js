@@ -24,7 +24,7 @@ const notes = require("../../../assets/notes.png");
 const people = require("../../../assets/people.png");
 const recipes = require("../../../assets/VietnameseCoffee.png");
 
-const URI = "http://10.0.2.2:8000/";
+const URI = "http://hushuscoffee.com/";
 
 class Home extends Component {
   state = {
@@ -197,13 +197,13 @@ class Home extends Component {
                       <Col style={{ flexDirection: "column" }}>
                         <Image
                           source={{
-                            uri: `http://10.0.2.2:8000/uploads/articles/${
+                            uri: `http://hushuscoffee.com/uploads/articles/${
                               item.image
                             }`
                           }}
                           style={styles.imageContainer}
                         />
-                        <Text style={styles.menuText}>{`${item.title}`}</Text>
+                        <Text style={styles.menuText}>{`${item.title}`.split(' ').map((s) => s.charAt(0) + s.substring(1).toLowerCase()).join(' ')}</Text>
                       </Col>
                     </Row>
                   </Grid>
@@ -212,9 +212,7 @@ class Home extends Component {
             </View>
           </Card>
 
-          <Card
-            style={{ backgroundColor: "#e5e7ea", padding: 5, marginTop: 25 }}
-          >
+          <Card style={{ backgroundColor: "#e5e7ea", padding: 5, marginTop: 25 }}>
             <Row style={styles.title}>
               <Text style={{ fontSize: 24 }}>People</Text>
               <Right>
@@ -243,7 +241,7 @@ class Home extends Component {
                       <Col style={{ flexDirection: "column" }}>
                         <Image
                           source={{
-                            uri: `http://10.0.2.2:8000/images/avatar/${
+                            uri: `http://hushuscoffee.com/images/avatar/${
                               item.photo
                             }`
                           }}

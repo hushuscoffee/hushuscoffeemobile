@@ -27,7 +27,7 @@ import {
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
-const URI = "http://10.0.2.2:8000/";
+const URI = "http://hushuscoffee.com/";
 
 class AllArticle extends Component {
   state = {
@@ -92,7 +92,7 @@ class AllArticle extends Component {
                   >
                     <Image
                       source={{
-                        uri: `http://10.0.2.2:8000/uploads/articles/${
+                        uri: `http://hushuscoffee.com/uploads/articles/${
                           item.image
                         }`
                       }}
@@ -102,7 +102,7 @@ class AllArticle extends Component {
                   <Col
                     style={{ flex: 0, flexDirection: "column", width: "70%" }}
                   >
-                    <Text>{`${item.title}`}</Text>
+                    <Text>{`${item.title}`.split(' ').map((s) => s.charAt(0) + s.substring(1).toLowerCase()).join(' ')}</Text>
                   </Col>
                 </Row>
               </Grid>

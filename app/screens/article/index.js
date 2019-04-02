@@ -27,7 +27,7 @@ import {
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 
-const URI = "http://10.0.2.2:8000/";
+const URI = "http://hushuscoffee.com/";
 
 class Article extends Component {
   state = {
@@ -130,13 +130,13 @@ class Article extends Component {
                       <Col style={{ flexDirection: "column" }}>
                         <Image
                           source={{
-                            uri: `http://10.0.2.2:8000/uploads/articles/${
+                            uri: `http://hushuscoffee.com/uploads/articles/${
                               item.image
                             }`
                           }}
                           style={styles.imageContainer}
                         />
-                        <Text style={styles.menuText}> {`${item.title}`}</Text>
+                        <Text style={styles.menuText}> {`${item.title}`.split(' ').map((s) => s.charAt(0) + s.substring(1).toLowerCase()).join(' ')}</Text>
                       </Col>
                     </Row>
                   </Grid>
@@ -145,9 +145,7 @@ class Article extends Component {
             </View>
           </Card>
 
-          <Card
-            style={{ backgroundColor: "#e5e7ea", padding: 5, marginTop: 20 }}
-          >
+          <Card style={{ backgroundColor: "#e5e7ea", padding: 5, marginTop: 20 }}>
             <Row style={styles.title}>
               <Text style={{ fontSize: 24 }}>Tips</Text>
               <Right>
@@ -182,13 +180,13 @@ class Article extends Component {
                       <Col style={{ flexDirection: "column" }}>
                         <Image
                           source={{
-                            uri: `http://10.0.2.2:8000/uploads/articles/${
+                            uri: `http://hushuscoffee.com/uploads/articles/${
                               item.image
                             }`
                           }}
                           style={styles.imageContainer}
                         />
-                        <Text style={styles.menuText}>{`${item.title}`}</Text>
+                        <Text style={styles.menuText}>{`${item.title}`.split(' ').map((s) => s.charAt(0) + s.substring(1).toLowerCase()).join(' ')}</Text>
                       </Col>
                     </Row>
                   </Grid>
@@ -197,9 +195,7 @@ class Article extends Component {
             </View>
           </Card>
 
-          <Card
-            style={{ backgroundColor: "#e5e7ea", padding: 5, marginTop: 20 }}
-          >
+          <Card style={{ backgroundColor: "#e5e7ea", padding: 5, marginTop: 20 }}>
             <Row style={styles.title}>
               <Text style={{ fontSize: 24 }}>Events</Text>
               <Right>
@@ -234,13 +230,13 @@ class Article extends Component {
                       <Col style={{ flexDirection: "column" }}>
                         <Image
                           source={{
-                            uri: `http://10.0.2.2:8000/uploads/articles/${
+                            uri: `http://hushuscoffee.com/uploads/articles/${
                               item.image
                             }`
                           }}
                           style={styles.imageContainer}
                         />
-                        <Text style={styles.menuText}>{`${item.title}`}</Text>
+                        <Text style={styles.menuText}>{`${item.title}`.split(' ').map((s) => s.charAt(0) + s.substring(1).toLowerCase()).join(' ')}</Text>
                       </Col>
                     </Row>
                   </Grid>

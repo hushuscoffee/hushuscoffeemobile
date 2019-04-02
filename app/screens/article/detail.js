@@ -29,7 +29,7 @@ import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import HTMLView from "react-native-htmlview";
 
-const URI = "http://10.0.2.2:8000/";
+const URI = "http://hushuscoffee.com/";
 
 class DetailArticle extends Component {
   // eslint-disable-line
@@ -46,9 +46,10 @@ class DetailArticle extends Component {
     var stringdesc = json.data[0].description;
     var splitdescription = JSON.stringify(stringdesc);
     var description = splitdescription
-      .replace(/<\/?(?!a)(?!img)\w*\b[^>]*>/gi, "")
+      .replace(/<\/?(?!p)(?!a)(?!img)\w*\b[^>]*>/gi, "")
       .replace(/(?:\\[rn])+/g, "")
-      .replace(/(<a[^>]*)(style[^>]*[>])/g, "");
+      .replace(/(<a[^>]*)(style[^>]*[>])/g, "")
+      .replace(/(<p[^>]*)(style[^>]*[>])/g, "");
     var rsDesc = eval(description);
 
     this.setState({
@@ -61,6 +62,10 @@ class DetailArticle extends Component {
     this.fetchData();
   }
 
+  trimNewLines(text) {
+  if (!text) return;
+  return text.replace(/(\r\n|\n|\r)/gm, '');
+}
   render() {
     return (
       <Container>
@@ -107,15 +112,18 @@ class DetailArticle extends Component {
                   <Col style={{ flexDirection: "column" }}>
                     <Image
                       source={{
-                        uri: `http://10.0.2.2:8000/uploads/articles/${
+                        uri: `http://hushuscoffee.com/uploads/articles/${
                           item.image
                         }`
                       }}
-                      style={styles.imageContainer}
+                      style={{ width: "100%", height: 200, margin: 7 }}
                     />
                   </Col>
                   <Col>
-                    <HTMLView value={this.state.desc} stylesheet={stylesHTML} />
+                    <HTMLView value={ this.state.desc } stylesheet={stylesHTML} />
+                    {/* <Text>
+                        { `${this.state.desc}` }
+                    </Text> */}
                   </Col>
                 </Row>
               </Grid>
@@ -130,6 +138,10 @@ class DetailArticle extends Component {
 const stylesHTML = StyleSheet.create({
   a: {
     color: "#1a0dab"
+  },
+  p: {
+    fontSize: 20,
+    color: "#000"
   }
 });
 

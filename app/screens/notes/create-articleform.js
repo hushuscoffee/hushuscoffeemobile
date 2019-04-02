@@ -112,7 +112,7 @@ class CreateArticleForm extends Component {
       loading: true
     });
     console.log("berhasil1");
-    fetch("http://10.0.2.2:8000/api/article/create", {
+    fetch("http://hushuscoffee.com/api/article/create", {
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data"

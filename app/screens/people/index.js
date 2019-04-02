@@ -30,7 +30,7 @@ import { Grid, Row, Col } from "react-native-easy-grid";
 import styles from "./styles";
 const deviceWidth = Dimensions.get("window").width;
 
-const URI = "http://10.0.2.2:8000/";
+const URI = "http://hushuscoffee.com/";
 
 class People extends Component {
   // eslint-disable-line
@@ -108,7 +108,7 @@ class People extends Component {
                           }
                         >
                             <Col style={{flexDirection: "column"}}>
-                              <Image source={{ uri : `http://10.0.2.2:8000/images/avatar/${item.photo}` }} style={styles.imageContainer} />
+                              <Image source={{ uri : `http://hushuscoffee.com/images/avatar/${item.photo}` }} style={styles.imageContainer} />
                             </Col>
                             <Col>
                               <Text style={styles.menuText}>

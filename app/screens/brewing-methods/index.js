@@ -41,7 +41,7 @@ const mokaPot = require("../../../assets/MokaPot.png");
 const coffeeKhop = require("../../../assets/CoffeeKhop.png");
 const hario = require("../../../assets/HarioV60.png");
 
-const URI = "http://10.0.2.2:8000/";
+const URI = "http://hushuscoffee.com/";
 
 class BrewingMethods extends Component {
   // eslint-disable-line
@@ -230,7 +230,7 @@ class BrewingMethods extends Component {
                     <Col style={{ flexDirection: "column" }}>
                       <Image
                         source={{
-                          uri: `http://10.0.2.2:8000/uploads/brewings/${
+                          uri: `http://hushuscoffee.com/uploads/brewings/${
                             item.image
                           }`
                         }}
