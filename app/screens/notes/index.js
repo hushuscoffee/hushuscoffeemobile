@@ -70,18 +70,20 @@ class Notes extends Component {
               />
             </CardItem>
             <CardItem>
-              <Left>
-                <Button iconLeft style={{ backgroundColor: "#ffcd22" }} onPress={() => this.props.navigation.navigate("CreateArticle")}>
+            <View
+                style={{
+                  width: dW * 0.9
+                }}
+              >
+               <Button width="90%"iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center" }} onPress={() => this.props.navigation.navigate("CreateArticle")}>
                   <Icon name="add" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>Add Article</Text>
                 </Button>
-              </Left>
-              <Right>
-                <Button iconLeft style={{ backgroundColor: "#ffcd22" }} onPress={() => this.props.navigation.navigate("MyArticle")}>
+                <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center", marginTop:20 }} onPress={() => this.props.navigation.navigate("MyArticle")}>
                   <Icon name="person" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>My Article</Text>
                 </Button>
-              </Right>
+              </View>
             </CardItem>
           </Card>
           <Card style={{ marginBottom: 30 }}>
@@ -102,18 +104,20 @@ class Notes extends Component {
               />
             </CardItem>
             <CardItem>
-              <Left>
-                <Button iconLeft style={{ backgroundColor: "#ffcd22" }}>
+            <View
+                style={{
+                  width: dW * 0.9
+                }}
+              >
+              <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center" }} onPress={() => this.props.navigation.navigate("CreateBrewing")}>
                   <Icon name="add" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>Add Brewing</Text>
                 </Button>
-              </Left>
-              <Right>
-                <Button iconLeft style={{ backgroundColor: "#ffcd22" }} onPress={() => this.props.navigation.navigate("MyBrewing")}>
+                <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center", marginTop:20 }} onPress={() => this.props.navigation.navigate("MyBrewing")}>
                   <Icon name="person" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>My Brewing</Text>
                 </Button>
-              </Right>
+              </View>              
             </CardItem>
           </Card>
           <Card>
@@ -134,18 +138,20 @@ class Notes extends Component {
               />
             </CardItem>
             <CardItem>
-              <Left>
-                <Button iconLeft style={{ backgroundColor: "#ffcd22" }}>
+            <View
+                style={{
+                  width: dW * 0.9
+                }}
+              >
+              <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center" }} onPress={() => this.props.navigation.navigate("CreateRecipe")}>
                   <Icon name="add" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>Add Recipe</Text>
                 </Button>
-              </Left>
-              <Right>
-                <Button iconLeft style={{ backgroundColor: "#ffcd22" }} onPress={() => this.props.navigation.navigate("MyRecipe")}>
+                <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center", marginTop:20 }} onPress={() => this.props.navigation.navigate("MyRecipe")}>
                   <Icon name="person" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>My Recipe</Text>
                 </Button>
-              </Right>
+              </View>
             </CardItem>
           </Card>
         </Content>

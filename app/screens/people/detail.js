@@ -67,7 +67,7 @@ class DetailPeople extends Component {
         <Header style={styles.header}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="navigate" style={{ color: "black" }} />
+              <Icon type="Ionicons" name="arrow-back" style={{ color: "black" }} />
             </Button>
           </Left>
           <Body>
@@ -87,13 +87,7 @@ class DetailPeople extends Component {
 
           <View>
             <Image source={{ uri: `http://hushuscoffee.com/images/avatar/${this.state.people.photo}` }} style={{ flex: 1, alignSelf: "center", width: 150, height: 150, borderRadius: 75, borderWidth: 1 }} />
-
-            <FlatList
-              data={this.state.achievement}
-              keyExtractor={(dataPeople, i) => i.toString()}
-              renderItem={({ item }) => (
-                <View>
-                  <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
+            <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
                     <Grid>
                       <Col style={styles.colImage}>
                         {/* <Image source={people} style={styles.imageDetail} /> */}
@@ -128,7 +122,11 @@ class DetailPeople extends Component {
                       </Col>
                     </Grid>
                   </Card>
-
+            <FlatList
+              data={this.state.achievement}
+              keyExtractor={(dataPeople, i) => i.toString()}
+              renderItem={({ item }) => (
+                <View>
                   <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
                     <Grid>
                       <Col>
@@ -168,7 +166,7 @@ class DetailPeople extends Component {
                   <Card style={{ backgroundColor: "#e5e7ea", padding: 10 }}>
                     <Grid>
                       <Col>
-                        <Text style={{ textAlign: "center" }}>Achievements</Text>
+                        <Text style={{ textAlign: "center" }}>Experience</Text>
                       </Col>
                       <View style={styles.line} />
                       <Row style={styles.mt}>

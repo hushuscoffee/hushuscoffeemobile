@@ -11,7 +11,9 @@ import {
   Right,
   Body,
   Text,
-  View
+  View,
+  Card,
+  CardItem
 } from "native-base";
 import styles from "./styles";
 import { Grid, Row, Col } from "react-native-easy-grid";
@@ -54,7 +56,11 @@ class MyArticle extends Component {
                 transparent
                 onPress={() => this.props.navigation.goBack()}
               >
-                <Icon name="navigate" style={{ color: "black" }} />
+                <Icon
+                  type="Ionicons"
+                  name="arrow-back"
+                  style={{ color: "black" }}
+                />
               </Button>
             </Left>
             <Body>
@@ -116,7 +122,11 @@ class MyArticle extends Component {
                 transparent
                 onPress={() => this.props.navigation.goBack()}
               >
-                <Icon name="navigate" style={{ color: "black" }} />
+                <Icon
+                  type="Ionicons"
+                  name="arrow-back"
+                  style={{ color: "black" }}
+                />
               </Button>
             </Left>
             <Body>
@@ -133,10 +143,13 @@ class MyArticle extends Component {
           </Header>
 
           <Content>
-            <Text>
-              You haven't create any article yet. Please create one here
-            </Text>
-            <Text>{this.state.message}</Text>
+            <Card>
+              <CardItem>
+                <Body>
+                  <Text>You haven't create any article yet.</Text>
+                </Body>
+              </CardItem>
+            </Card>
           </Content>
         </Container>
       );

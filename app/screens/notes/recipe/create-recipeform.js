@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import {
+  Animated,
   Image,
   Dimensions,
   StyleSheet,
+  LayoutAnimation,
+  ScrollView,
   View,
   AsyncStorage,
   Alert,
@@ -10,13 +13,11 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
+  UIManager,
   Platform
 } from "react-native";
 
 import {
-  Container,
-  Header,
-  Title,
   Textarea,
   Content,
   Button,
@@ -24,6 +25,9 @@ import {
   Left,
   Right,
   Body,
+  H1,
+  H2,
+  H3,
   Picker,
   Item,
   Text,
@@ -31,14 +35,13 @@ import {
   Input,
   Label
 } from "native-base";
-import Loader from "../indicator/loader";
+import Loader from "../../indicator/loader";
 import { NavigationActions, StackActions } from "react-navigation";
 import { Grid, Row, Col } from "react-native-easy-grid";
-import { throttle } from "lodash";
-import Upload from "react-native-background-upload";
 import ImagePicker from "react-native-image-picker";
+import Ingredients_Item from "./ingredient";
 
-import styles from "./styles";
+import styles from "../styles";
 const deviceWidth = Dimensions.get("window").width;
 const options = {
   title: "select a photo",
@@ -46,20 +49,75 @@ const options = {
   chooseFrmoLibraryButtonTitle: "Choose from Gallery",
   quality: 1
 };
-class CreateArticleForm extends Component {
+const width = Dimensions.get("window").width;
+var unit;
+
+class CreateRecipeForm extends Component {
   // eslint-disable-line
   constructor() {
     super();
     this.state = {
       title: "",
-      category: "1",
-      file: null,
+      cover: null,
       description: "",
       shared: "1",
       loading: false,
-      idUserHushus: null
+      idUserHushus: null,
+      valueArray: [],
+      disabled: false,
+      materialName: [],
+      toolName: [],
+      step: [],
+      stepImage: [],
+      time1: "",
+      time2: "",
+      second: "second",
+      temperature: "",
+      celcius: "&deg;F",
+      materialAmount: [],
+      materialUnitArr: [],
+      materialUnit: "gr",
+      toolAmount: [],
+      toolUnitArr: [],
+      toolUnit: "unit",
+      steps: []
     };
+    this.addNewElement = false;
+    this.index = 0;
   }
+
+  afterAnimationComplete = () => {
+    this.index += 1;
+    this.setState({ disabled: false });
+  };
+
+  add_New_View = () => {
+    this.addNewElement = true;
+    const newlyAddedValue = { id: "id_" + this.index, text: this.index + 1 };
+
+    this.setState({
+      disabled: true,
+      valueArray: [...this.state.valueArray, newlyAddedValue]
+    });
+  };
+
+  remove_Selected_Item(id) {
+    this.addNewElement = false;
+    const newArray = [...this.state.valueArray];
+    newArray.splice(newArray.findIndex(ele => ele.id === id), 1);
+
+    this.setState(
+      () => {
+        return {
+          valueArray: newArray
+        };
+      },
+      () => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      }
+    );
+  }
+
   selectPhoto() {
     ImagePicker.showImagePicker(options, response => {
       console.log("Response = ", response);
@@ -76,7 +134,7 @@ class CreateArticleForm extends Component {
           source = { uri: response.uri.replace("file://", ""), isStatic: true };
         }
         this.setState({
-          file: source
+          cover: source
         });
       }
     });
@@ -89,14 +147,14 @@ class CreateArticleForm extends Component {
     data.append("shared", this.state.shared);
     data.append("category", this.state.category);
     data.append("user", this.state.idUserHushus);
-    if (this.state.file != null) {
-      data.append('file', {
-        uri: this.state.file.uri,
-        type: 'image/jpeg/jpg/png',
-        name: 'testPhotoName'
+    if (this.state.cover != null) {
+      data.append("cover", {
+        uri: this.state.cover.uri,
+        type: "image/jpeg",
+        name: "testPhotoName"
       });
     } else {
-      data.append("file", this.state.file);
+      data.append("cover", this.state.cover);
     }
     this.setState({
       loading: true
@@ -137,16 +195,28 @@ class CreateArticleForm extends Component {
       })
       .done();
   }
-  onValueChange2(value) {
-    this.setState({
-      category: value
-    });
-  }
   onValueChange3(value) {
     this.setState({
       shared: value
     });
   }
+  onValueChangeSecond(value) {
+    this.setState({
+      second: value
+    });
+  }
+
+  onValueChangeTemperature(value) {
+    this.setState({
+      celcius: value
+    });
+  }
+  onValueChangeMaterialUnit(value) {
+    this.setState({
+      materialUnitArr: value
+    });
+  }
+
 
   async getIdUserHushus() {
     await AsyncStorage.getItem("idUserHushus").then(value =>
@@ -176,27 +246,8 @@ class CreateArticleForm extends Component {
             />
           </Item>
           <Item stackedLabel style={{ marginTop: 30 }}>
-            <Label>Category</Label>
-            <Item picker>
-              <Picker
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                style={{ width: undefined }}
-                placeholder="Category"
-                placeholderStyle={{ color: "#bfc6ea" }}
-                placeholderIconColor="#007aff"
-                selectedValue={this.state.category}
-                onValueChange={this.onValueChange2.bind(this)}
-              >
-                <Picker.Item label="Events" value="1" />
-                <Picker.Item label="News" value="2" />
-                <Picker.Item label="Tips" value="3" />
-              </Picker>
-            </Item>
-          </Item>
-          <Item stackedLabel style={{ marginTop: 30 }}>
             <Label>Cover Image</Label>
-            {this.state.file === null ? (
+            {this.state.cover === null ? (
               <View
                 style={{
                   width: deviceWidth * 0.9
@@ -215,7 +266,7 @@ class CreateArticleForm extends Component {
                   width: deviceWidth * 0.9
                 }}
               >
-                <Image style={styles.image} source={this.state.file} />
+                <Image style={styles.image} source={this.state.cover} />
                 <TouchableOpacity
                   style={styles.TouchableOpacityStyle}
                   onPress={this.selectPhoto.bind(this)}
@@ -237,7 +288,89 @@ class CreateArticleForm extends Component {
               onChangeText={text => this.setState({ description: text })}
             />
           </Item>
-
+          <H3 style={{ marginTop: 30 }}>What You'll Need</H3>
+          <Item stackedLabel last style={{ marginTop: 30 }}>
+            <Label>Ingredients</Label>
+            <View style={styles.contain}>
+              <Input
+                style={{
+                  borderColor: "black",
+                  borderBottomWidth: 1,
+                  width: deviceWidth * 0.9
+                }}
+                onChangeText={text => this.setState({ materialName: text })}
+              />
+              <Grid>
+                <Col size={3}>
+                <Input
+                style={{
+                  borderColor: "black",
+                  borderBottomWidth: 1,
+                  width: deviceWidth * 0.4
+                }}
+                onChangeText={text => this.setState({ materialAmount: text })}
+                placeholder="amount"
+              />
+                </Col>
+                <Col size={2}>
+                  <Item picker>
+                    <Picker
+                      mode="dropdown"
+                      iosIcon={<Icon name="arrow-down" />}
+                      style={{ width: undefined }}
+                      placeholder="Amount"
+                      placeholderStyle={{ color: "#bfc6ea" }}
+                      placeholderIconColor="#007aff"
+                      selectedValue={this.state.materialUnitArr}
+                      onValueChange={this.onValueChangeMaterialUnit.bind(this)}
+                    >
+                      <Picker.Item label="gr" value="gr" />
+                      <Picker.Item label="ml" value="ml" />
+                    </Picker>
+                  </Item>
+                </Col>
+                <Col size={1}>
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={styles.new}
+                    disabled={this.state.disabled}
+                    onPress={this.add_New_View}
+                  >
+                    <Image
+                      source={{
+                        uri:
+                          "https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png"
+                      }}
+                      style={styles.FloatingButtonStyle}
+                    />
+                  </TouchableOpacity>
+                </Col>
+              </Grid>
+              <ScrollView
+                ref={scrollView => (this.scrollView = scrollView)}
+                onContentSizeChange={() => {
+                  this.addNewElement && this.scrollView.scrollToEnd();
+                }}
+              >
+                <View style={{ flex: 1, padding: 4 }}>
+                  {this.state.valueArray.map(ele => {
+                    return (
+                      <Ingredients_Item
+                        key={ele.id}
+                        item={ele}
+                        deleteItem={id => this.remove_Selected_Item(id)}
+                        afterAnimationComplete={this.afterAnimationComplete}
+                        materialName ={this.state.materialName}
+                        materialAmount ={this.state.materialAmount}
+                        materialUnitArr ={this.state.materialUnitArr}
+                        onValueChangeMaterialUnit={this.onValueChangeMaterialUnit}
+                      />
+                    );
+                  })}
+                </View>
+              </ScrollView>
+            </View>
+          </Item>
           <Item stackedLabel style={{ marginTop: 30 }}>
             <Label>Choose how you share it</Label>
             <Item picker>
@@ -260,7 +393,7 @@ class CreateArticleForm extends Component {
         <Button
           block
           style={{ margin: 15, marginTop: 30, backgroundColor: "#ffcd22" }}
-          // onPress={() => this.handleClick(navigate)}
+          
         >
           <Text style={{ color: "black" }}>SAVE</Text>
         </Button>
@@ -269,4 +402,4 @@ class CreateArticleForm extends Component {
   }
 }
 
-export default CreateArticleForm;
+export default CreateRecipeForm;

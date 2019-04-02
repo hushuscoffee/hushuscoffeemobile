@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreateArticleForm from "./create-articleform";
+import CreateBrewingForm from "./create-brewingform";
 import { Image, Dimensions, View } from "react-native";
 
 import {
@@ -20,10 +20,10 @@ import {
   H1
 } from "native-base";
 
-import styles from "./styles";
+import styles from "../styles";
 const deviceWidth = Dimensions.get("window").width;
 
-class CreateArticle extends Component {
+class CreateBrewing extends Component {
   render() {
     return (
       <Container>
@@ -37,7 +37,7 @@ class CreateArticle extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={styles.title}>Add Article</Title>
+            <Title style={styles.title}>Add Brewing</Title>
           </Body>
           <Right>
             <Button transparent>
@@ -49,12 +49,12 @@ class CreateArticle extends Component {
           </Right>
         </Header>
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <H1 style={{ fontWeight: "bold" }}>Make Your Own Article</H1>
+          <H1 style={{ fontWeight: "bold" }}>Make Your Own Brewing Method</H1>
         </View>
-        <CreateArticleForm data={this.props.navigation} />
+        <CreateBrewingForm data={this.props.navigation} />
       </Container>
     );
   }
 }
 
-export default CreateArticle;
+export default CreateBrewing;

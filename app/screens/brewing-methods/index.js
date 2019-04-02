@@ -4,6 +4,7 @@ import {
   Dimensions,
   StyleSheet,
   TouchableOpacity,
+  Text,
   FlatList
 } from "react-native";
 
@@ -18,7 +19,7 @@ import {
   Right,
   Body,
   Item,
-  Text,
+  
   Card,
   CardItem,
   Thumbnail,
