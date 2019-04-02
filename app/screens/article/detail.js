@@ -50,6 +50,7 @@ class DetailArticle extends Component {
       .replace(/(?:\\[rn])+/g, "")
       .replace(/(<a[^>]*)(style[^>]*[>])/g, "")
       .replace(/(<p[^>]*)(style[^>]*[>])/g, "");
+    // var trimmed = description.trim();
     var rsDesc = eval(description);
 
     this.setState({
@@ -62,10 +63,6 @@ class DetailArticle extends Component {
     this.fetchData();
   }
 
-  trimNewLines(text) {
-  if (!text) return;
-  return text.replace(/(\r\n|\n|\r)/gm, '');
-}
   render() {
     return (
       <Container>
@@ -75,7 +72,7 @@ class DetailArticle extends Component {
               transparent
               onPress={() => this.props.navigation.goBack()}
             >
-              <Icon type="Ionicons" name="arrow-back" style={{ color: "black" }} />
+              <Icon ios='ios-arrow-back' android="md-arrow-back" style={{color: 'black'}}/>
             </Button>
           </Left>
           <Body>
@@ -120,7 +117,7 @@ class DetailArticle extends Component {
                     />
                   </Col>
                   <Col>
-                    <HTMLView value={ this.state.desc } stylesheet={stylesHTML} />
+                    <HTMLView value={ `${this.state.desc}`.replace(/(?:\\[rn])+/g, "") } stylesheet={stylesHTML}  textComponentProps={{ style: stylesHTML.p }} />
                     {/* <Text>
                         { `${this.state.desc}` }
                     </Text> */}
@@ -140,8 +137,9 @@ const stylesHTML = StyleSheet.create({
     color: "#1a0dab"
   },
   p: {
-    fontSize: 20,
-    color: "#000"
+    lineHeight: 22,
+    color: "black",
+    fontSize: 16
   }
 });
 

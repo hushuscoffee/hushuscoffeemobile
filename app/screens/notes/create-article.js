@@ -33,7 +33,7 @@ class CreateArticle extends Component {
               transparent
               onPress={() => this.props.navigation.goBack()}
             >
-              <Icon type="Ionicons" name="arrow-back" style={{ color: "black" }} />
+              <Icon ios='ios-arrow-back' android="md-arrow-back" style={{color: 'black'}}/>
             </Button>
           </Left>
           <Body>

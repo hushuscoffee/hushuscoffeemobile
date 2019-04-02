@@ -20,37 +20,44 @@ const datas_non_auth = [
   {
     name: "Home",
     route: "Home",
-    icon: "home"
+    ios: "ios-home",
+    android: "md-home"
   },
   {
     name: "Article",
     route: "Article",
-    icon: "paper"
+    ios: "ios-paper",
+    android: "md-paper"
   },
   {
     name: "Brewing Method",
     route: "BrewingMethods",
-    icon: "book"
+    ios: "ios-book",
+    android: "md-book"
   },
   {
     name: "Recipe",
     route: "Recipes",
-    icon: "clipboard"
+    ios: "ios-clipboard",
+    android: "md-clipboard"
   },
   {
     name: "People",
     route: "People",
-    icon: "people"
+    ios: "ios-people",
+    android: "md-people"
   },
   {
     name: "Login",
     route: "AuthLogin",
-    icon: "person"
+    ios: "ios-log-in",
+    android: "md-log-in"
   },
   {
     name: "Register",
     route: "AuthRegister",
-    icon: "person-add"
+    ios: "ios-person-add",
+    android: "md-person-add"
   }
 ];
 
@@ -58,32 +65,38 @@ const datas_auth = [
   {
     name: "Home",
     route: "Home",
-    icon: "home"
+    ios: "ios-home",
+    android: "md-home"
   },
   {
     name: "Article",
     route: "Article",
-    icon: "paper"
+    ios: "ios-paper",
+    android: "md-paper"
   },
   {
     name: "Brewing Method",
     route: "BrewingMethods",
-    icon: "book"
+    ios: "ios-book",
+    android: "md-book"
   },
   {
     name: "Recipe",
     route: "Recipes",
-    icon: "clipboard"
+    ios: "ios-clipboard",
+    android: "md-clipboard"
   },
   {
     name: "People",
     route: "People",
-    icon: "people"
+    ios: "ios-people",
+    android: "md-people"
   },
   {
     name: "My Notes",
     route: "Notes",
-    icon: "paper"
+    ios: "ios-clipboard",
+    android: "md-clipboard"
   }
 ];
 
@@ -157,7 +170,8 @@ class SideBar extends Component {
                   <Left>
                     <Icon
                       active
-                      name={data.icon}
+                      ios={data.ios}
+                      android={data.android}
                       style={{ color: "#777", fontSize: 26, width: 30 }}
                     />
                     <Text style={styles.text}>{data.name}</Text>
@@ -186,7 +200,8 @@ class SideBar extends Component {
                 <Left>
                   <Icon
                     active
-                    name="log-out"
+                    ios="ios-log-out"
+                    android="md-log-out"
                     style={{ color: "#777", fontSize: 26, width: 30 }}
                   />
                   <Text style={styles.text}>Logout</Text>
@@ -216,7 +231,8 @@ class SideBar extends Component {
                   <Left>
                     <Icon
                       active
-                      name={data.icon}
+                      ios={data.ios}
+                      android={data.android}
                       style={{ color: "#777", fontSize: 26, width: 30 }}
                     />
                     <Text style={styles.text}>{data.name}</Text>

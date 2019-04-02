@@ -36,7 +36,7 @@ class Notes extends Component {
               transparent
               onPress={() => this.props.navigation.openDrawer()}
             >
-              <Icon name="menu" style={{ color: "black" }} />
+              <Icon ios='ios-menu' android="md-menu" style={{color: 'black'}}/>
             </Button>
           </Left>
           <Body>
@@ -75,10 +75,6 @@ class Notes extends Component {
                   width: dW * 0.9
                 }}
               >
-               <Button width="90%"iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center" }} onPress={() => this.props.navigation.navigate("CreateArticle")}>
-                  <Icon name="add" style={{ color: "black" }} />
-                  <Text style={{ color: "black" }}>Add Article</Text>
-                </Button>
                 <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center", marginTop:20 }} onPress={() => this.props.navigation.navigate("MyArticle")}>
                   <Icon name="person" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>My Article</Text>
@@ -109,10 +105,6 @@ class Notes extends Component {
                   width: dW * 0.9
                 }}
               >
-              <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center" }} onPress={() => this.props.navigation.navigate("CreateBrewing")}>
-                  <Icon name="add" style={{ color: "black" }} />
-                  <Text style={{ color: "black" }}>Add Brewing</Text>
-                </Button>
                 <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center", marginTop:20 }} onPress={() => this.props.navigation.navigate("MyBrewing")}>
                   <Icon name="person" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>My Brewing</Text>
@@ -143,10 +135,6 @@ class Notes extends Component {
                   width: dW * 0.9
                 }}
               >
-              <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center" }} onPress={() => this.props.navigation.navigate("CreateRecipe")}>
-                  <Icon name="add" style={{ color: "black" }} />
-                  <Text style={{ color: "black" }}>Add Recipe</Text>
-                </Button>
                 <Button width="90%" iconLeft style={{ backgroundColor: "#ffcd22", justifyContent:"center", marginTop:20 }} onPress={() => this.props.navigation.navigate("MyRecipe")}>
                   <Icon name="person" style={{ color: "black" }} />
                   <Text style={{ color: "black" }}>My Recipe</Text>

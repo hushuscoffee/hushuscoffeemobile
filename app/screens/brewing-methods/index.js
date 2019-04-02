@@ -74,7 +74,7 @@ class BrewingMethods extends Component {
               transparent
               onPress={() => this.props.navigation.openDrawer()}
             >
-              <Icon name="menu" style={{ color: "black" }} />
+              <Icon ios='ios-menu' android="md-menu" style={{color: 'black'}}/>
             </Button>
           </Left>
           <Body>
@@ -97,7 +97,11 @@ class BrewingMethods extends Component {
                 <Col style={styles.col}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 2
+                      })
+                    }
                   >
                     <Image source={pourOver} />
                   </CardItem>
@@ -108,7 +112,11 @@ class BrewingMethods extends Component {
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 1
+                      })
+                    }
                   >
                     <Image source={syphone} />
                   </CardItem>
@@ -119,7 +127,11 @@ class BrewingMethods extends Component {
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 12
+                      })
+                    }
                   >
                     <Image source={chemex} />
                   </CardItem>
@@ -132,7 +144,11 @@ class BrewingMethods extends Component {
                 <Col style={styles.col}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 13
+                      })
+                    }
                   >
                     <Image source={aeropress} />
                   </CardItem>
@@ -143,7 +159,11 @@ class BrewingMethods extends Component {
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 14
+                      })
+                    }
                   >
                     <Image source={vietnamDrip} />
                   </CardItem>
@@ -154,7 +174,11 @@ class BrewingMethods extends Component {
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 15
+                      })
+                    }
                   >
                     <Image source={turkishCezve} />
                   </CardItem>
@@ -167,7 +191,11 @@ class BrewingMethods extends Component {
                 <Col style={styles.col}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 16
+                      })
+                    }
                   >
                     <Image source={mokaPot} />
                   </CardItem>
@@ -178,7 +206,11 @@ class BrewingMethods extends Component {
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 17
+                      })
+                    }
                   >
                     <Image source={coffeeKhop} />
                   </CardItem>
@@ -189,7 +221,11 @@ class BrewingMethods extends Component {
                 <Col style={[styles.col, styles.contentSpace]}>
                   <CardItem
                     button
-                    onPress={() => this.props.navigation.navigate("#")}
+                    onPress={() =>
+                      this.props.navigation.navigate("DetailBrewing", {
+                        id: 17
+                      })
+                    }
                   >
                     <Image source={hario} />
                   </CardItem>

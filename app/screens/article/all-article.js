@@ -57,7 +57,7 @@ class AllArticle extends Component {
               transparent
               onPress={() => this.props.navigation.openDrawer()}
             >
-              <Icon name="menu" style={{ color: "black" }} />
+          <Icon ios='ios-menu' android="md-menu" style={{color: 'black'}}/>
             </Button>
           </Left>
           <Body>
@@ -103,6 +103,8 @@ class AllArticle extends Component {
                     style={{ flex: 0, flexDirection: "column", width: "70%" }}
                   >
                     <Text>{`${item.title}`.split(' ').map((s) => s.charAt(0) + s.substring(1).toLowerCase()).join(' ')}</Text>
+                    <Text></Text>
+                  <Text>{item.created_at}</Text>
                   </Col>
                 </Row>
               </Grid>

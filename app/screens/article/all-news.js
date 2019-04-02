@@ -56,7 +56,7 @@ class AllNews extends Component {
               transparent
               onPress={() => this.props.navigation.goBack()}
             >
-              <Icon type="Ionicons" name="arrow-back" style={{ color: "black" }} />
+              <Icon ios='ios-arrow-back' android="md-arrow-back" style={{color: 'black'}}/>
             </Button>
           </Left>
           <Body>
@@ -102,6 +102,8 @@ class AllNews extends Component {
                     style={{ flex: 0, flexDirection: "column", width: "70%" }}
                   >
                   <Text>{ `${item.title}`.split(' ').map((s) => s.charAt(0) + s.substring(1).toLowerCase()).join(' ') }</Text>
+                  <Text></Text>
+                  <Text>{item.created_at}</Text>
                   </Col>
                 </Row>
               </Grid>

@@ -78,7 +78,7 @@ class Article extends Component {
               transparent
               onPress={() => this.props.navigation.openDrawer()}
             >
-              <Icon name="menu" style={{ color: "black" }} />
+            <Icon ios='ios-menu' android="md-menu" style={{color: 'black'}}/>
             </Button>
           </Left>
           <Body>
